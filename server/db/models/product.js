@@ -10,7 +10,10 @@ const Product = db.define('product', {
     }
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    validate: {
+      isEmpty: false
+    }
   },
   price: {
     type: Sequelize.DECIMAL,
