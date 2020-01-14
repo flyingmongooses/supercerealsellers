@@ -38,7 +38,7 @@ const seed = async () => {
       title: 'Booberry',
       description: "It's like blueberry, but instead, it's boo.",
       price: 299,
-      quantity: 100
+      inventory: 100
     })
     const productPromises = []
     for (let j = 0; j < 100; j++) {
@@ -47,7 +47,7 @@ const seed = async () => {
           title: faker.random.word(),
           description: faker.random.words(),
           price: 299,
-          quantity: 100
+          inventory: 100
         })
       )
       Promise.all(productPromises)
