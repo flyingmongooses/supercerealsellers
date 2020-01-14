@@ -36,7 +36,7 @@ const seed = async () => {
     const booberry = await Product.create({
       title: 'Booberry',
       description: "It's like blueberry, but instead, it's boo.",
-      price: 2.99,
+      price: 299,
       quantity: 100
     })
     const productPromises = []
@@ -45,7 +45,7 @@ const seed = async () => {
         await Product.create({
           title: faker.random.word(),
           description: faker.random.words(),
-          price: 2.99,
+          price: 299,
           quantity: 100
         })
       )
