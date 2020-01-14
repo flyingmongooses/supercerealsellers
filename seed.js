@@ -8,8 +8,8 @@ const seed = async () => {
     await db.sync({force: true})
 
     const paul = await User.create({
-      first_name: 'Paul',
-      last_name: 'Luhrsen',
+      firstName: 'Paul',
+      lastName: 'Luhrsen',
       email: 'pl@gmail.com',
       password: 'password',
       address: '909 N Campbell',
