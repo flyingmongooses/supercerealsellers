@@ -3,14 +3,14 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
-  first_name: {
+  firstName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
     }
   },
-  last_name: {
+  lastName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -20,7 +20,10 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true
+    }
   },
   password: {
     type: Sequelize.STRING,
@@ -45,7 +48,7 @@ const User = db.define('user', {
     }
   },
   state: {
-    //maybe make this an ENUM and list the states
+    //make a dropdown list on the front end to allow only valid states//
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -53,11 +56,12 @@ const User = db.define('user', {
     }
   },
   zipcode: {
-    //validate for a real zipcode
+    //len should only allow 5 digit zips///
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      notEmpty: true
+      notEmpty: true,
+      len: [5]
     }
   },
   salt: {
