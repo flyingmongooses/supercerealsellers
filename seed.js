@@ -21,8 +21,8 @@ const seed = async () => {
     for (let i = 0; i < 100; i++) {
       userPromises.push(
         await User.create({
-          first_name: faker.name.firstName(),
-          last_name: faker.name.lastName(),
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
           email: faker.internet.email(),
           password: faker.random.word(),
           address: faker.address.streetAddress(),
