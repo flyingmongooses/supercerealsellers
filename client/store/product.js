@@ -4,12 +4,7 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const SET_PRODUCTS = 'SET_PRODUCTS'
-const GET_NEW_PRODUCT = 'GET_NEW_PRODUCT'
-
-// /**
-//  * INITIAL STATE
-//  */
-// const defaultUser = {}
+const ADD_PRODUCT = 'ADD_PRODUCT'
 
 /**
  * ACTION CREATORS
@@ -19,8 +14,8 @@ export const setProducts = products => {
   return {type: SET_PRODUCTS, products}
 }
 
-export const getProduct = product => {
-  return {type: GET_NEW_PRODUCT, product}
+export const addProduct = product => {
+  return {type: ADD_PRODUCT, product}
 }
 
 /**
@@ -28,9 +23,13 @@ export const getProduct = product => {
  */
 export const fetchProducts = () => {
   return async dispatch => {
-    const response = await axios.get('/api/products')
-    const action = setProducts(response.data)
-    dispatch(action)
+    try {
+      const response = await axios.get('/api/products')
+      const action = setProducts(response.data)
+      dispatch(action)
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
@@ -42,7 +41,7 @@ const productReducer = (state = [], action) => {
   switch (action.type) {
     case SET_PRODUCTS:
       return action.products
-    case GET_NEW_PRODUCT:
+    case ADD_PRODUCT:
       return [...state, action.product]
     default:
       return state
