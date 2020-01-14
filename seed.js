@@ -1,5 +1,6 @@
 const {db, User} = require('./server/db')
 const Product = require('./server/db/models/product')
+const Order = require('./server/db/models/order')
 const faker = require('faker')
 const {green, red} = require('chalk')
 
@@ -51,6 +52,14 @@ const seed = async () => {
       )
       Promise.all(productPromises)
     }
+    const firstOrder = await Order.create({
+      status: 'open',
+      userId: paul.id
+    })
+    // console.log(Object.keys(firstOrder.__proto__))
+    // console.log(booberry)
+    await firstOrder.addProduct(booberry)
+    // booberry.addOrder(firstOrder)
   } catch (err) {
     console.log(err)
   }
