@@ -1,5 +1,5 @@
 {
-  "name": "boilermaker",
+  "name": "cereal",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
@@ -16,7 +16,7 @@
     "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
     "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
     "postinstall": "touch secrets.js",
-    "seed": "node script/seed.js",
+    "seed": "node seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
@@ -42,10 +42,12 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
+    "chalk": "^3.0.0",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
     "express": "^4.16.4",
     "express-session": "^1.15.1",
+    "faker": "^4.1.0",
     "history": "^4.9.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",

@@ -6,33 +6,29 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   description: {
     type: Sequelize.TEXT,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   price: {
     type: Sequelize.DECIMAL,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
   },
   quantity: {
-    type: Sequelize.NUMBER,
-    validate: {
-      defaultValue: 0
-    }
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   },
   imageUrl: {
     type: Sequelize.STRING,
-    validate: {
-      defaultValue:
-        'https://www.pikpng.com/pngl/m/256-2564366_honey-nut-cheerios-gluten-free-breakfast-cereal-cheerios.png'
-    }
+    defaultValue:
+      'https://www.pikpng.com/pngl/m/256-2564366_honey-nut-cheerios-gluten-free-breakfast-cereal-cheerios.png'
   }
 })
 
