@@ -9,6 +9,7 @@ class SearchBar extends React.Component {
       search: ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
@@ -16,16 +17,17 @@ class SearchBar extends React.Component {
   handleSubmit(event) {
     try {
       event.preventDefault()
-      this.props.searchStuff()
+      this.props.searchStuff(this.state.search)
     } catch (err) {
       console.log(err)
     }
   }
   render() {
+    console.log(this.props)
     const {search} = this.state
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="search">Search Cereal</label>
             <input
@@ -34,6 +36,7 @@ class SearchBar extends React.Component {
               value={search}
               onChange={this.handleChange}
             />
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>

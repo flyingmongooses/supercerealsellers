@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/product'
 import {Link} from 'react-router-dom'
+import SearchBar from './SearchBar'
 
 /**
  * COMPONENT
@@ -15,6 +16,7 @@ class AllProducts extends React.Component {
     const products = this.props.products
     return (
       <div>
+        <SearchBar />
         <div>
           <h1>All Products</h1>
         </div>

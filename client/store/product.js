@@ -40,7 +40,8 @@ export const fetchProducts = () => {
 export const searchStuff = searchQuery => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/search', searchQuery)
+      console.log(searchQuery)
+      const {data} = await axios.get(`/api/search?search=${searchQuery}`)
       dispatch(searchProducts(data))
     } catch (err) {
       console.log(err)
