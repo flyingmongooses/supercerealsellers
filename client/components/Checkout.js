@@ -8,7 +8,6 @@ export default class Checkout extends Component {
       lastName: '',
       email: '',
       address: '',
-      country: '',
       state: '',
       zip: ''
     }
@@ -55,13 +54,6 @@ export default class Checkout extends Component {
           name="address"
           onChange={this.handleChange}
           value={this.state.address}
-        />
-        <label htmlFor="country">Country: </label>
-        <input
-          type="text"
-          name="country"
-          onChange={this.handleChange}
-          value={this.state.country}
         />
         <label htmlFor="state">State: </label>
         <input
