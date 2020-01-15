@@ -23,11 +23,10 @@ class AllProducts extends React.Component {
         {products.map(product => (
           <div key={product.id}>
             <Link to={`products/${product.id}`}>
-              <h3>{product.title}</h3>
+              <h3>{`${product.title[0].toUpperCase()}${product.title.slice(
+                1
+              )}`}</h3>
             </Link>
-            <p>{`${product.title[0].toUpperCase()}${product.title.slice(
-              1
-            )}`}</p>
             <p>{product.description}</p>
             <p>${product.price / 100}</p>
             <p>{product.inventory}</p>
