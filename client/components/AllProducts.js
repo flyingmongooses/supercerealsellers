@@ -26,7 +26,7 @@ class AllProducts extends React.Component {
             <p>{product.title}</p>
             <p>{product.description}</p>
             <p>{product.price}</p>
-            <p>{product.inventory}</p>
+            <p>{product.quantity}</p>
             <img src={product.imageUrl} />
           </div>
         ))}
