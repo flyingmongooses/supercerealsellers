@@ -6,11 +6,6 @@ import axios from 'axios'
 const SET_PRODUCTS = 'SET_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 
-// /**
-//  * INITIAL STATE
-//  */
-// const defaultUser = {}
-
 /**
  * ACTION CREATORS
  */

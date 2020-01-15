@@ -29,7 +29,7 @@ const seed = async () => {
           address: faker.address.streetAddress(),
           city: faker.address.city(),
           state: faker.address.stateAbbr(),
-          zipcode: 60622
+          zipcode: faker.address.zipCode()
         })
       )
     }
@@ -56,10 +56,10 @@ const seed = async () => {
       status: 'open',
       userId: paul.id
     })
-    // console.log(Object.keys(firstOrder.__proto__))
-    // console.log(booberry)
     await firstOrder.addProduct(booberry)
-    // booberry.addOrder(firstOrder)
+    firstOrder.order_items = {
+      quantity: 100
+    }
   } catch (err) {
     console.log(err)
   }
