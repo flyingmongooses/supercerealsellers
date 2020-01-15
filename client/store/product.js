@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const SET_PRODUCTS = 'SET_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
+const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS'
 
 /**
  * ACTION CREATORS
@@ -16,6 +17,9 @@ export const setProducts = products => {
 
 export const addProduct = product => {
   return {type: ADD_PRODUCT, product}
+}
+export const searchProducts = products => {
+  return {type: SEARCH_PRODUCTS, products}
 }
 
 /**
@@ -33,6 +37,17 @@ export const fetchProducts = () => {
   }
 }
 
+export const searchStuff = searchQuery => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/search', searchQuery)
+      dispatch(searchProducts(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -43,6 +58,8 @@ const productReducer = (state = [], action) => {
       return action.products
     case ADD_PRODUCT:
       return [...state, action.product]
+    case SEARCH_PRODUCTS:
+      return action.products
     default:
       return state
   }
