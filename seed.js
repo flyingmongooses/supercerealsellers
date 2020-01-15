@@ -56,7 +56,10 @@ const seed = async () => {
       status: 'open',
       userId: paul.id
     })
-    await firstOrder.addProduct(booberry, {through: {quantity: 100}})
+    await firstOrder.addProduct(booberry)
+    firstOrder.order_items = {
+      quantity: 100
+    }
   } catch (err) {
     console.log(err)
   }
