@@ -1,5 +1,6 @@
 const {db, User} = require('./server/db')
 const Product = require('./server/db/models/product')
+const Category = require('./server/db/models/category')
 const Order = require('./server/db/models/order')
 const faker = require('faker')
 const {green, red} = require('chalk')
@@ -57,6 +58,10 @@ const seed = async () => {
       userId: paul.id
     })
     await firstOrder.addProduct(booberry)
+    const unhealthy = await Category.create({
+      name: 'unhealthy'
+    })
+    await booberry.addCategory(unhealthy)
     firstOrder.order_items = {
       quantity: 100
     }
