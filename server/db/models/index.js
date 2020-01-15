@@ -3,6 +3,7 @@ const Product = require('./product')
 const Order = require('./order')
 const Review = require('./review')
 const OrderItems = require('./orderItems')
+const Session = require('./sessions')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -32,5 +33,6 @@ module.exports = {
   Product,
   Order,
   Review,
-  OrderItems
+  OrderItems,
+  Session
 }
