@@ -10,9 +10,10 @@ import singleProductReducer from './singleProduct'
 ///usersReducer is now unused, might need to look into naming convention for it///
 
 export const reducer = combineReducers({
-  users: userReducer,
+  user: userReducer,
   products: productReducer,
-  product: singleProductReducer
+  product: singleProductReducer,
+  users: usersReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
