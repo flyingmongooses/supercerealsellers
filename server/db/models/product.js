@@ -32,4 +32,8 @@ const Product = db.define('product', {
   }
 })
 
+Product.addHook('beforeValidate', product => {
+  product.title = product.title.toLowerCase()
+})
+
 module.exports = Product

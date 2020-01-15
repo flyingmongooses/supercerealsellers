@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
   handleSubmit(event) {
     try {
       event.preventDefault()
-      this.props.searchStuff(this.state.search)
+      this.props.searchStuff(this.state.search.toLowerCase())
     } catch (err) {
       console.log(err)
     }

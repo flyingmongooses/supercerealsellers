@@ -25,7 +25,9 @@ class AllProducts extends React.Component {
             <Link to={`/products/${product.id}`}>
               <h3>{product.name}</h3>
             </Link>
-            <p>{product.title}</p>
+            <p>{`${product.title[0].toUpperCase()}${product.title.slice(
+              1
+            )}`}</p>
             <p>{product.description}</p>
             <p>{product.price}</p>
             <p>{product.inventory}</p>
