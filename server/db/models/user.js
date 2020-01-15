@@ -57,11 +57,11 @@ const User = db.define('user', {
   },
   zipcode: {
     //len should only allow 5 digit zips///
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
-      len: [5]
+      len: 5
     }
   },
   salt: {
@@ -115,4 +115,9 @@ User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 User.beforeBulkCreate(users => {
   users.forEach(setSaltAndPassword)
+})
+User.addHook('beforeValidate', user => {
+  if (user.zipcode.length > 5) {
+    user.zipcode = user.zipcode.slice(0, 5)
+  }
 })
