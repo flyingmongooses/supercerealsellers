@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/product'
 import {Link} from 'react-router-dom'
+import SearchBar from './SearchBar'
 
 /**
  * COMPONENT
@@ -15,28 +16,28 @@ class AllProducts extends React.Component {
     const products = this.props.products
     return (
       <div>
+        <SearchBar />
         <div>
           <h1>All Products</h1>
         </div>
         {products.map(product => (
           <div key={product.id}>
-            <Link to={`/products/${product.id}`}>
-              <h3>{product.name}</h3>
+            <Link to={`products/${product.id}`}>
+              <h3>{product.title}</h3>
             </Link>
-            <p>{product.title}</p>
+            <p>{`${product.title[0].toUpperCase()}${product.title.slice(
+              1
+            )}`}</p>
             <p>{product.description}</p>
-            <p>{product.price}</p>
+            <p>${product.price / 100}</p>
             <p>{product.inventory}</p>
+            <p> review rating in stars or out of 5?</p>
+            <p> add to cart button</p>
+            <p>Quantity => dropdown list or form to input amount to purchase</p>
             <img src={product.imageUrl} />
           </div>
         ))}
       </div>
-      // <div>
-      //   <h3>list of all products</h3>
-      //   <h1>image, description? review rating? </h1>
-      //   <h3> add to cart</h3>
-      //   <h3> Quantity => dropdown list or form to input amount to purchase</h3>
-      // </div>
     )
   }
 }

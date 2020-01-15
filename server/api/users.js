@@ -4,6 +4,7 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
+    req.session.user = 'uiwheriuqwr'
     const users = await User.findAll()
     res.json(users)
   } catch (err) {
