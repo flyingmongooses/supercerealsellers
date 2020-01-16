@@ -31,17 +31,16 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/create-account" component={CreateAccount} />
-        <Route path="/users" component={AllUsers} />
-        <Route path="/checkout" component={Checkout} />
-        <Route exact path="/products" component={AllProducts} />
-        <Route path="/products/:id" component={SingleProduct} />
-        <Route exact path="/categories/:id" component={SingleCategory} />
-        <Route path="/cart" component={Cart} />
         <Route exact path="/" component={Main} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/users" component={AllUsers} />
+            <Route path="/checkout" component={Checkout} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:id" component={SingleProduct} />
+            <Route exact path="/categories/:id" component={SingleCategory} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -58,7 +57,7 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.currentUser
+    isLoggedIn: !!state.currentUser.id
   }
 }
 
