@@ -2,7 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import userReducer from './user'
+import currentUserReducer from './currentUser'
 import productReducer from './product'
 import usersReducer from './allUsers'
 import singleProductReducer from './singleProduct'
@@ -12,7 +12,7 @@ import singleCategoryReducer from './singleCategory'
 ///usersReducer is now unused, might need to look into naming convention for it///
 
 export const reducer = combineReducers({
-  user: userReducer,
+  currentUser: currentUserReducer,
   products: productReducer,
   product: singleProductReducer,
   users: usersReducer,
@@ -25,4 +25,4 @@ const middleware = composeWithDevTools(
 const store = createStore(reducer, middleware)
 
 export default store
-export * from './user'
+export * from './currentUser'
