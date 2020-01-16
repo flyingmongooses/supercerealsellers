@@ -5,15 +5,6 @@ import {connect} from 'react-redux'
 import {postUser} from '../store/user'
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleOnClick = this.handleOnClick.bind(this)
-  }
-  handleOnClick() {
-    this.props.postUser({
-      firstName: 'Guest'
-    })
-  }
   render() {
     return (
       <div>
@@ -23,11 +14,17 @@ class Main extends React.Component {
         </button>
         <button>
           <Link to="/signup">Sign Up</Link>
+        <button
+          onClick={() => {
+            console.log('button')
+            this.props.postUser({
+              firstName: 'Guest',
+              lastName: 'Guest'
+            })
+          }}
+        >
+          Continue as Guest
         </button>
-        {/* <button onClick={(event = this.handleOnClick(event))}>
-          {/* <Link to="/products">Continue as Guest and start Browsing</Link> */}
-        {/* Continue as Guest
-        </button> */} */}
       </div>
     )
   }
