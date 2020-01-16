@@ -20,9 +20,27 @@ form div {
   display: inline-block;
 }
 
+#navbar {
+  background-color: teal;
+  color: white;
+}
+
+#all-products-page {
+  display: flex;
+  border: 2px solid red;
+}
+
+#all-products {
+  display: flex;
+  border: 2px solid purple;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 #all-products-box {
   display: flex;
   border: 2px solid gold;
+  width: 90%;
 }
 
 #all-products-img {
@@ -44,4 +62,14 @@ form div {
 #all-products-title {
   display: flex;
   border: 2px solid black;
+}
+
+#category-title {
+  display: flex;
+  border: 2px solid black;
+}
+
+#category-all {
+  display: flex;
+  border: 2px solid green;
 }
