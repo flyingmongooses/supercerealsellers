@@ -48,6 +48,7 @@ export class CreateAccount extends React.Component {
       state: '',
       zipcode: ''
     })
+    this.props.history.push('/home')
   }
 
   render() {
