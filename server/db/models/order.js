@@ -7,5 +7,7 @@ const Order = db.define('order', {
     allowNull: false
   }
 })
-
+Order.addHook('beforeValidate', order => {
+  order.status = 'open'
+})
 module.exports = Order
