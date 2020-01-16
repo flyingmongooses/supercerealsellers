@@ -43,3 +43,14 @@ router.get('/user/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+///needs work, needs to be able to check if the user has already started a new cart///
+
+router.post('/', async (req, res, next) => {
+  try {
+    const order = await Order.create({status: 'open'})
+    res.json(order)
+  } catch (err) {
+    next(err)
+  }
+})

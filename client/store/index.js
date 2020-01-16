@@ -6,6 +6,8 @@ import userReducer from './user'
 import productReducer from './product'
 import usersReducer from './allUsers'
 import singleProductReducer from './singleProduct'
+import categoryReducer from './allCategories'
+import singleCategoryReducer from './singleCategory'
 
 ///usersReducer is now unused, might need to look into naming convention for it///
 
@@ -13,7 +15,9 @@ export const reducer = combineReducers({
   user: userReducer,
   products: productReducer,
   product: singleProductReducer,
-  users: usersReducer
+  users: usersReducer,
+  categories: categoryReducer,
+  category: singleCategoryReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
