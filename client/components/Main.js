@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 // import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {postUser} from '../store/user'
+import {postUser} from '../store/currentUser'
 
 class Main extends React.Component {
   render() {

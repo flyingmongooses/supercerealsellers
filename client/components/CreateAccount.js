@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {postUser} from '../store'
+import {postCurrentUser} from '../store'
 
 export class CreateAccount extends React.Component {
   constructor(props) {
@@ -120,5 +120,5 @@ export class CreateAccount extends React.Component {
 }
 
 export default connect(null, dispatch => ({
-  addUser: user => dispatch(postUser(user))
+  addUser: user => dispatch(postCurrentUser(user))
 }))(CreateAccount)
