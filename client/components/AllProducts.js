@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {fetchProducts} from '../store/product'
 import {Link} from 'react-router-dom'
 import SearchBar from './SearchBar'
+import CategoryList from './CategoryList'
+import {fetchCategories} from '../store/allCategories'
 
 /**
  * COMPONENT
@@ -10,6 +12,7 @@ import SearchBar from './SearchBar'
 class AllProducts extends React.Component {
   componentDidMount() {
     this.props.fetchProducts()
+    this.props.fetchCategories()
   }
 
   render() {
@@ -17,6 +20,7 @@ class AllProducts extends React.Component {
     return (
       <div>
         <SearchBar />
+        <CategoryList />
         <div>
           <h1>All Products</h1>
         </div>
@@ -49,7 +53,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchProducts: () => dispatch(fetchProducts())
+    fetchProducts: () => dispatch(fetchProducts()),
+    fetchCategories: () => dispatch(fetchCategories())
   }
 }
 export default connect(mapState, mapDispatch)(AllProducts)
