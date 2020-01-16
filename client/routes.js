@@ -11,6 +11,7 @@ import AllProducts from './components/AllProducts'
 import SingleProduct from './components/SingleProduct'
 import SingleCategory from './components/SingleCategory'
 import Main from './components/Main'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
