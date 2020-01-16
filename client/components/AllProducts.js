@@ -13,6 +13,7 @@ class AllProducts extends React.Component {
 
   render() {
     const products = this.props.products
+    console.log(this.props)
     return (
       <div>
         <div>
@@ -27,7 +28,7 @@ class AllProducts extends React.Component {
             <p>${product.price / 100}</p>
             <p>{product.inventory}</p>
             <p> review rating in stars or out of 5?</p>
-            <p> add to cart button</p>
+            <button>add to cart</button>
             <p>Quantity => dropdown list or form to input amount to purchase</p>
             <img src={product.imageUrl} />
           </div>
