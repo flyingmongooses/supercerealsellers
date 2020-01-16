@@ -64,6 +64,12 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
+      //fake info for user creation purposes
+      const zipcode = 60625
+      const address = '100 Main Street'
+      const city = 'Main City'
+      const state = 'IL'
+      //end of fake
       dispatch(auth(email, password, formName))
     }
   }
