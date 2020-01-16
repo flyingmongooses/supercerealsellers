@@ -19,3 +19,29 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#all-products-box {
+  display: flex;
+  border: 2px solid gold;
+}
+
+#all-products-img {
+  height: 10%;
+  width: 10%;
+}
+
+#all-products-btns {
+  display: flex;
+  border: 2px solid green;
+}
+
+#all-products-info {
+  display: flex;
+  border: 2px solid blue;
+  flex-direction: column;
+}
+
+#all-products-title {
+  display: flex;
+  border: 2px solid black;
+}
