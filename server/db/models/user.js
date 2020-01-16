@@ -11,14 +11,14 @@ const User = db.define('user', {
     }
   },
   lastName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
     }
   },
   email: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     unique: true,
     allowNull: false,
     validate: {
@@ -34,14 +34,14 @@ const User = db.define('user', {
     }
   },
   address: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
     }
   },
   city: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
@@ -49,7 +49,7 @@ const User = db.define('user', {
   },
   state: {
     //make a dropdown list on the front end to allow only valid states//
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true
@@ -57,7 +57,7 @@ const User = db.define('user', {
   },
   zipcode: {
     //len should only allow 5 digit zips///
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
