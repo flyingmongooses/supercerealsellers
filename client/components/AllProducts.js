@@ -6,7 +6,6 @@ import SearchBar from './SearchBar'
 import CategoryList from './CategoryList'
 import {fetchCategories} from '../store/allCategories'
 import Dropdown from 'react-dropdown'
-// import 'react-dropdown/style.css'
 
 const options = [
   {value: '1', label: '1'},
