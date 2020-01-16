@@ -11,19 +11,19 @@ const User = db.define('user', {
     }
   },
   lastName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
   },
   email: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      isEmail: true
-    }
+    type: Sequelize.STRING
+    // unique: true,
+    // allowNull: false,
+    // validate: {
+    //   isEmail: true
+    // }
   },
   password: {
     type: Sequelize.STRING,
@@ -34,35 +34,35 @@ const User = db.define('user', {
     }
   },
   address: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
   },
   city: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
   },
   state: {
     //make a dropdown list on the front end to allow only valid states//
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
+    type: Sequelize.STRING
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true
+    // }
   },
   zipcode: {
     //len should only allow 5 digit zips///
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-      len: 5
-    }
+    type: Sequelize.STRING
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    //   len: 5
+    // }
   },
   salt: {
     type: Sequelize.STRING,
