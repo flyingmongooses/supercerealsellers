@@ -48,6 +48,7 @@ router.get('/user/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body)
     const {userId, productId} = req.body
     const order = await Order.findOrCreate({
       where: {userId},

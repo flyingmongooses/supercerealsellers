@@ -6,10 +6,11 @@ const createOrder = order => {
   return {type: CREATE_ORDER, order}
 }
 
-export const makeOrder = id => {
+export const makeOrder = info => {
+  const {userId, productId} = info
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/orders', id)
+      const {data} = await axios.post('/api/orders', {userId, productId})
       dispatch(createOrder(data))
     } catch (err) {
       console.log(err)

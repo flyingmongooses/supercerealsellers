@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
   }
   res.send(`Welcome, ${sess.email}`)
 })
-
+// router.use('/cart', require('./cart'))
 router.use('/users', require('./users'))
 router.use('/products', require('./products'))
 router.use('/orders', require('./orders'))

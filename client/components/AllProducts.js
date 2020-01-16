@@ -6,6 +6,21 @@ import SearchBar from './SearchBar'
 import CategoryList from './CategoryList'
 import {fetchCategories} from '../store/allCategories'
 import {makeOrder} from '../store/orders'
+import Dropdown from 'react-dropdown'
+
+const options = [
+  {value: '1', label: '1'},
+  {value: '2', label: '2'},
+  {value: '3', label: '3'},
+  {value: '4', label: '4'},
+  {value: '5', label: '5'},
+  {value: '6', label: '6'},
+  {value: '7', label: '7'},
+  {value: '8', label: '8'},
+  {value: '9', label: '9'},
+  {value: '10', label: '10'}
+]
+const defaultOption = options[0]
 
 /**
  * COMPONENT
@@ -20,7 +35,7 @@ class AllProducts extends React.Component {
     this.props.fetchCategories()
   }
   handleClick(event) {
-    console.log(event.target.value)
+    console.log(this.props)
     this.props.makeOrder({
       userId: this.props.user.id,
       productId: event.target.value
@@ -51,6 +66,18 @@ class AllProducts extends React.Component {
               Add to cart
             </button>
             <p>Quantity => dropdown list or form to input amount to purchase</p>
+            <button>add to cart</button>
+            <div>
+              <p>Quantity</p>
+              <button>
+                <Dropdown
+                  options={options}
+                  onChange={this._onSelect}
+                  value={defaultOption}
+                  placeholder="Select an option"
+                />
+              </button>
+            </div>
             <img src={product.imageUrl} />
           </div>
         ))}
@@ -62,7 +89,7 @@ class AllProducts extends React.Component {
 const mapState = state => {
   return {
     products: state.products,
-    user: state.user
+    user: state.currentUser
   }
 }
 
