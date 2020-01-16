@@ -14,12 +14,19 @@ class Main extends React.Component {
         </button>
         <button>
           <Link to="/signup">Sign Up</Link>
+        </button>
         <button
           onClick={() => {
             console.log('button')
             this.props.postUser({
               firstName: 'Guest',
-              lastName: 'Guest'
+              lastName: 'Guest',
+              email: 'guest@gmail.com',
+              password: 'guest',
+              address: '100 Main',
+              city: 'Chicago',
+              state: 'IL',
+              zipcode: '60622'
             })
           }}
         >
