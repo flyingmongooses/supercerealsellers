@@ -13,7 +13,7 @@ class Main extends React.Component {
           <Link to="/login">Login</Link>
         </button>
         <button>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/create-account">Sign Up</Link>
         </button>
         <button
           onClick={() => {
