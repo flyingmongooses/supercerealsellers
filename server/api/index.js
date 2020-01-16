@@ -1,6 +1,16 @@
 const router = require('express').Router()
 module.exports = router
+let sess
 
+router.get('/', async (req, res, next) => {
+  console.log('in the route')
+  sess = req.session
+  if (sess.email) {
+    return res.redirect('/hello')
+  }
+  res.send(`Welcome, ${sess.email}`)
+})
+// router.use('/cart', require('./cart'))
 router.use('/users', require('./users'))
 router.use('/products', require('./products'))
 router.use('/orders', require('./orders'))

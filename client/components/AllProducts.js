@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import SearchBar from './SearchBar'
 import CategoryList from './CategoryList'
 import {fetchCategories} from '../store/allCategories'
+import {makeOrder} from '../store/orders'
 import Dropdown from 'react-dropdown'
 
 const options = [
@@ -25,11 +26,21 @@ const defaultOption = options[0]
  * COMPONENT
  */
 class AllProducts extends React.Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
   componentDidMount() {
     this.props.fetchProducts()
     this.props.fetchCategories()
   }
-
+  handleClick(event) {
+    console.log(this.props)
+    this.props.makeOrder({
+      userId: this.props.user.id,
+      productId: event.target.value
+    })
+  }
   render() {
     const products = this.props.products
     console.log(this.props)
@@ -57,7 +68,9 @@ class AllProducts extends React.Component {
                   <p>{product.inventory}</p>
                   <p> review rating in stars or out of 5?</p>
                   <div id="all-products-btns">
-                    <button>add to cart</button>
+                    <button type="button" onClick={this.handleClick} value={product.id}>
+              Add to cart
+            </button>
                     <div>
                       <p>Quantity</p>
                       <button>
@@ -82,14 +95,16 @@ class AllProducts extends React.Component {
 
 const mapState = state => {
   return {
-    products: state.products
+    products: state.products,
+    user: state.currentUser
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
-    fetchCategories: () => dispatch(fetchCategories())
+    fetchCategories: () => dispatch(fetchCategories()),
+    makeOrder: (userId, productId) => dispatch(makeOrder(userId, productId))
   }
 }
 export default connect(mapState, mapDispatch)(AllProducts)
