@@ -47,40 +47,47 @@ class AllProducts extends React.Component {
     return (
       <div>
         <SearchBar />
-        <CategoryList />
         <div>
           <h1>All Products</h1>
         </div>
-        {products.map(product => (
-          <div key={product.id}>
-            <Link to={`products/${product.id}`}>
-              <h3>{`${product.title[0].toUpperCase()}${product.title.slice(
-                1
-              )}`}</h3>
-            </Link>
-            <p>{product.description}</p>
-            <p>${product.price / 100}</p>
-            <p>{product.inventory}</p>
-            <p> review rating in stars or out of 5?</p>
-            <button type="button" onClick={this.handleClick} value={product.id}>
+        <div id="all-products-page">
+          <CategoryList />
+          <div id="all-products">
+            {products.map(product => (
+              <div key={product.id} id="all-products-box">
+                <img src={product.imageUrl} id="all-products-img" />
+                <div id="all-products-info">
+                  <Link to={`products/${product.id}`} id="all-products-title">
+                    <h3
+                    >{`${product.title[0].toUpperCase()}${product.title.slice(
+                      1
+                    )}`}</h3>
+                  </Link>
+                  <p>{product.description}</p>
+                  <p>${product.price / 100}</p>
+                  <p>{product.inventory}</p>
+                  <p> review rating in stars or out of 5?</p>
+                  <div id="all-products-btns">
+                    <button type="button" onClick={this.handleClick} value={product.id}>
               Add to cart
             </button>
-            <p>Quantity => dropdown list or form to input amount to purchase</p>
-            <button>add to cart</button>
-            <div>
-              <p>Quantity</p>
-              <button>
-                <Dropdown
-                  options={options}
-                  onChange={this._onSelect}
-                  value={defaultOption}
-                  placeholder="Select an option"
-                />
-              </button>
-            </div>
-            <img src={product.imageUrl} />
+                    <div>
+                      <p>Quantity</p>
+                      <button>
+                        <Dropdown
+                          options={options}
+                          onChange={this._onSelect}
+                          value={defaultOption}
+                          placeholder="Select an option"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     )
   }
