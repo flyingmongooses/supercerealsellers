@@ -64,9 +64,30 @@ class AllProducts extends React.Component {
                     )}`}</h3>
                   </Link>
                   <p>{product.description}</p>
-                  <p>${product.price / 100}</p>
-                  <p>{product.inventory}</p>
-                  <p> review rating in stars or out of 5?</p>
+                  <p>Price: ${product.price / 100}</p>
+                  <p>Current Inventory: {product.inventory}</p>
+                  <div>
+                    {!product.reviews.length ? (
+                      <div>
+                        <div>No reviews yet...</div>
+                        <button>Click here to write a review!</button>
+                      </div>
+                    ) : (
+                      <div>
+                        <div>Most recent review:</div>
+                        <div>
+                          {`${product.reviews[0].rating}/5  `}
+                          <strong>{product.reviews[0].title}</strong>
+                        </div>
+                        <div>{product.reviews[0].description}</div>
+                        <button>
+                          <Link to={`products/${product.id}`}>
+                            See more reviews for this product
+                          </Link>
+                        </button>
+                      </div>
+                    )}
+                  </div>
                   <div id="all-products-btns">
                     <button
                       type="button"
