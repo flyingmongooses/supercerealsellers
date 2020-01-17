@@ -10,6 +10,10 @@ import Dropdown from 'react-dropdown'
 
 const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
+let rate = 0
+let rateCount = 0
+let displayRate
+
 /**
  * COMPONENT
  */
@@ -64,9 +68,13 @@ class AllProducts extends React.Component {
                     )}`}</h3>
                   </Link>
                   <p>{product.description}</p>
-                  <p>${product.price / 100}</p>
-                  <p>{product.inventory}</p>
-                  <p> review rating in stars or out of 5?</p>
+                  <p>Price: ${product.price / 100}</p>
+                  <p>Current Inventory: {product.inventory}</p>
+                  <p>
+                    {!product.reviews.length
+                      ? 'No reviews yet'
+                      : `Avg Customer Rating: ${product.reviews[0].rating}/5`}
+                  </p>
                   <div id="all-products-btns">
                     <button
                       type="button"
