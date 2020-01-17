@@ -81,7 +81,7 @@ class AllProducts extends React.Component {
                           options={options}
                           onChange={this._onSelect}
                           value={defaultOption}
-                          placeholder="Select an Quantity"
+                          placeholder="Select a Quantity"
                         />
                       </button>
                     </div>
