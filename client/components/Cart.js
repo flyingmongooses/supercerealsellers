@@ -65,7 +65,9 @@ class Cart extends React.Component {
             })}
           Total({totalItems} Items): ${(totalPrice / 100).toFixed(2)}
         </h3>
-        <h3>Button to Checkout</h3>
+        <Link to="/checkout">
+          <button type="button">Checkout</button>
+        </Link>
         <Link to="/products">Continue Shopping</Link>
       </div>
     )
