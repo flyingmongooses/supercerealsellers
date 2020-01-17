@@ -35,7 +35,6 @@ class AllProducts extends React.Component {
     this.props.fetchCategories()
   }
   handleClick(event) {
-    console.log(this.props)
     this.props.makeOrder({
       userId: this.props.user.id,
       productId: event.target.value
@@ -43,7 +42,6 @@ class AllProducts extends React.Component {
   }
   render() {
     const products = this.props.products
-    console.log(this.props)
     return (
       <div>
         <SearchBar />
@@ -68,9 +66,13 @@ class AllProducts extends React.Component {
                   <p>{product.inventory}</p>
                   <p> review rating in stars or out of 5?</p>
                   <div id="all-products-btns">
-                    <button type="button" onClick={this.handleClick} value={product.id}>
-              Add to cart
-            </button>
+                    <button
+                      type="button"
+                      onClick={this.handleClick}
+                      value={product.id}
+                    >
+                      Add to cart
+                    </button>
                     <div>
                       <p>Quantity</p>
                       <button>

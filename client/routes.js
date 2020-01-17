@@ -18,8 +18,8 @@ import Cart from './components/Cart'
  */
 class Routes extends Component {
   componentDidMount() {
+    console.log(this.props)
     this.props.loadInitialData()
-    this.props.fetchUsers()
   }
 
   render() {
@@ -38,6 +38,7 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/users" component={AllUsers} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/cart" component={Cart} />
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:id" component={SingleProduct} />
             <Route exact path="/categories/:id" component={SingleCategory} />

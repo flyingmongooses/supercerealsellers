@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {fetchOrder} from '../store/orders'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div id="navbar">
@@ -14,6 +15,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/products">See All Products</Link>
+          <Link to="/cart">Cart</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -35,7 +37,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.currentUser.id
+    isLoggedIn: !!state.currentUser.id,
+    user: state.currentUser,
+    order: state.order
   }
 }
 
