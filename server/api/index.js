@@ -1,17 +1,19 @@
 const router = require('express').Router()
 module.exports = router
-let sess
 
-router.get('/', async (req, res, next) => {
-  console.log('in the route')
-  sess = req.session
-  if (sess.email) {
-    return res.redirect('/hello')
+const adminCheck = (req, res, next) => {
+  try {
+    if (req.session.user && req.session.user.role === 'ADMIN') {
+      next()
+    } else {
+      res.status(403).json('Get out of here, pal')
+    }
+  } catch (err) {
+    next(err)
   }
-  res.send(`Welcome, ${sess.email}`)
-})
-// router.use('/cart', require('./cart'))
-router.use('/users', require('./users'))
+}
+
+router.use('/users', adminCheck, require('./users'))
 router.use('/products', require('./products'))
 router.use('/orders', require('./orders'))
 router.use('/search', require('./search'))
