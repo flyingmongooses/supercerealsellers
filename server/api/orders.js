@@ -32,10 +32,8 @@ router.get('/:id', async (req, res, next) => {
 ///this displays all of the orders and order items for a given user based on the user's id///
 router.get('/user/:id', async (req, res, next) => {
   try {
-    const singleUserOrders = await Order.findAll({
-      where: {
-        userId: req.params.id
-      },
+    const singleUserOrders = await Order.findOne({
+      where: {userId: req.params.id},
       include: [{model: Product}]
     })
     res.json(singleUserOrders)
@@ -66,10 +64,15 @@ router.post('/', async (req, res, next) => {
 
 router.put('/delete', async (req, res, next) => {
   try {
+    console.log(req.body, 'body')
     const {id, productId} = req.body
-    const order = await Order.findByPk(id, {include: [{model: Product}]})
-    const refreshedCart = await order.removeProduct({where: {id: productId}})
-    res.json(refreshedCart)
+    const order = await Order.findOne({
+      where: {userId: id},
+      include: [{model: Product}]
+    })
+    const product = await Product.findOne({where: {id: productId}})
+    await order.removeProduct(product)
+    res.sendStatus(200)
   } catch (err) {
     next(err)
   }
