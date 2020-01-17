@@ -16,7 +16,6 @@ const adminCheck = (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    req.session.user = 'uiwheriuqwr'
     const users = await User.findAll()
     res.json(users)
   } catch (err) {

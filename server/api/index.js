@@ -1,9 +1,17 @@
 const router = require('express').Router()
 module.exports = router
+const {User} = require('../db/models')
 
-const adminCheck = (req, res, next) => {
+const adminCheck = async (req, res, next) => {
   try {
-    if (req.session.user && req.session.user.role === 'ADMIN') {
+    const person = await User.findOne({
+      where: {
+        id: req.session.passport.user
+      }
+    })
+    // console.log(req.session.passport.user)
+    console.log(person)
+    if (person.role === 'admin') {
       next()
     } else {
       res.status(403).json('Get out of here, pal')
