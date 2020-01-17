@@ -9,8 +9,6 @@ const adminCheck = async (req, res, next) => {
         id: req.session.passport.user
       }
     })
-    // console.log(req.session.passport.user)
-    console.log(person)
     if (person.role === 'admin') {
       next()
     } else {
