@@ -3,6 +3,7 @@ import axios from 'axios'
 const CREATE_ORDER = 'CREATE_ORDER'
 const GET_ORDER = 'GET_ORDER'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const COMPLETE_ORDER = 'COMPLETE_ORDER'
 
 const createOrder = order => {
   return {type: CREATE_ORDER, order}
@@ -12,6 +13,9 @@ const getOrder = order => {
 }
 const deleteProduct = productId => {
   return {type: DELETE_PRODUCT, productId}
+}
+const completeOrder = order => {
+  return {type: COMPLETE_ORDER, order}
 }
 
 export const makeOrder = info => {
@@ -54,6 +58,17 @@ export const removeProduct = info => {
     }
   }
 }
+export const finishOrder = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/orders/${id}`)
+      console.log('data', data)
+      dispatch(completeOrder(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
 const orderReducer = (state = {}, action) => {
   switch (action.type) {
@@ -68,6 +83,8 @@ const orderReducer = (state = {}, action) => {
           return product.id !== action.productId
         })
       }
+    case COMPLETE_ORDER:
+      return action.order
     default:
       return state
   }

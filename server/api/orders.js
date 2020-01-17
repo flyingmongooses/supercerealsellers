@@ -46,7 +46,6 @@ router.get('/user/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('reqBody??', req.body)
     const {userId, productId, quantity} = req.body
     const order = await Order.findOrCreate({
       where: {userId},
@@ -72,7 +71,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/delete', async (req, res, next) => {
   try {
-    console.log(req.body, 'body')
     const {id, productId} = req.body
     const order = await Order.findOne({
       where: {userId: id},
@@ -83,5 +81,18 @@ router.put('/delete', async (req, res, next) => {
     res.sendStatus(200)
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const orderId = req.params.id
+    const order = await Order.findByPk(orderId)
+    console.log('before', order)
+    await order.update({status: 'processing'})
+    console.log('after', order)
+    res.json(order)
+  } catch (err) {
+    console.log(err)
   }
 })

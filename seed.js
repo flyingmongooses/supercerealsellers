@@ -2,6 +2,7 @@ const {db, User} = require('./server/db')
 const Product = require('./server/db/models/product')
 const Category = require('./server/db/models/category')
 const Order = require('./server/db/models/order')
+const Review = require('./server/db/models/review')
 const faker = require('faker')
 const {green, red} = require('chalk')
 
@@ -17,7 +18,8 @@ const seed = async () => {
       address: '909 N Campbell',
       city: 'Chicago',
       state: 'IL',
-      zipcode: '60622'
+      zipcode: '60622',
+      role: 'admin'
     })
     const userPromises = []
     for (let i = 0; i < 100; i++) {
@@ -65,6 +67,12 @@ const seed = async () => {
     firstOrder.order_items = {
       quantity: 100
     }
+    const booberryReview = await Review.create({
+      title: 'what is the title supposed to be?',
+      rating: 1,
+      description: 'this shit sucks'
+    })
+    await booberry.addReview(booberryReview)
   } catch (err) {
     console.log(err)
   }

@@ -4,15 +4,22 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll({
-      include: [{model: Review}]
-    })
+    const products = await Product.findAll({include: [{model: Review}]})
     res.json(products)
   } catch (err) {
     next(err)
   }
 })
-
+router.get('/reviews/:id', async (req, res, next) => {
+  try {
+    const productReviews = await Product.findByPk(req.params.id, {
+      include: [{model: Review}]
+    })
+    res.json(productReviews)
+  } catch (err) {
+    next(err)
+  }
+})
 router.get('/:id', async (req, res, next) => {
   try {
     const singleProduct = await Product.findByPk(req.params.id)
