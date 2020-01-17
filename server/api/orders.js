@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const {Order, Product, User} = require('../db/models')
+const {Order, Product, OrderItems} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -46,14 +46,21 @@ router.get('/user/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
-    const {userId, productId} = req.body
+    const {userId, productId, quantity} = req.body
     const order = await Order.findOrCreate({
       where: {userId},
       include: [{model: Product}]
     })
     const product = await Product.findByPk(productId)
     await order[0].addProduct(product)
+    await OrderItems.update(
+      {
+        quantity: quantity
+      },
+      {
+        where: {orderId: order[0].id, productId}
+      }
+    )
     res.json(order[0])
   } catch (err) {
     next(err)
@@ -64,7 +71,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/delete', async (req, res, next) => {
   try {
-    console.log(req.body, 'body')
     const {id, productId} = req.body
     const order = await Order.findOne({
       where: {userId: id},

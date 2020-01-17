@@ -3,13 +3,19 @@ import {connect} from 'react-redux'
 import {fetchOrder, removeProduct} from '../store/orders'
 import {Link} from 'react-router-dom'
 
+let totalPrice = 0
+let totalItems = 0
+
 class Cart extends React.Component {
   constructor() {
     super()
+    
     this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
     this.props.fetchOrder(this.props.user.id)
+    totalPrice = 0
+    totalItems = 0
   }
   handleClick(event) {
     console.log(event.target.value)
@@ -17,9 +23,12 @@ class Cart extends React.Component {
       id: this.props.user.id,
       productId: event.target.value
     })
+    totalItems = 0
+    totalPrice = 0
   }
   render() {
     const {order} = this.props
+    const productsInCart = this.props.order.products
     return (
       <div>
         <h1>Your Cart</h1>
@@ -34,6 +43,8 @@ class Cart extends React.Component {
                         1
                       )}`}{' '}
                     </div>
+                    <div>${product.price / 100}</div>
+                    <div>Qty: {product.order_items.quantity}</div>
                     <button
                       type="button"
                       onClick={this.handleClick}
@@ -46,9 +57,18 @@ class Cart extends React.Component {
               })}
           </h3>
         </div>
+        <h3>
+          {order.products &&
+            order.products.map(product => {
+              totalPrice += product.price * product.order_items.quantity
+              totalItems += product.order_items.quantity
+            })}
+          Total({totalItems} Items): ${(totalPrice / 100).toFixed(2)}
+        </h3>
         <Link to="/checkout">
           <button type="button">Checkout</button>
         </Link>
+        <Link to="/products">Continue Shopping</Link>
       </div>
     )
   }
