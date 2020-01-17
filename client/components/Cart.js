@@ -9,10 +9,7 @@ let totalItems = 0
 class Cart extends React.Component {
   constructor() {
     super()
-    // this.state = {
-    //   totalPrice: 0,
-    //   numItems: 0
-    // }
+    
     this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
@@ -32,7 +29,6 @@ class Cart extends React.Component {
   render() {
     const {order} = this.props
     const productsInCart = this.props.order.products
-    console.log('cart?', productsInCart)
     return (
       <div>
         <h1>Your Cart</h1>
