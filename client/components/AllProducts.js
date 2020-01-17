@@ -46,10 +46,6 @@ class AllProducts extends React.Component {
     const products = this.props.products
     const defaultOption = this.state.selected
     console.log('state', this.state.selected)
-    const placeHolderValue =
-      typeof this.state.selected === 'string'
-        ? this.state.selected
-        : this.state.selected.label
     return (
       <div>
         <SearchBar />
@@ -82,17 +78,14 @@ class AllProducts extends React.Component {
                       Add to cart
                     </button>
                     <div>
-                      <div>Quantity</div>
-                      <Dropdown
-                        options={options}
-                        onChange={this._onSelect}
-                        value={defaultOption}
-                        placeholder="Select an option"
-                      />
-                      <div className="result">
-                        You selected
-                        <strong> {placeHolderValue} </strong>
-                      </div>
+                      <button>
+                        <Dropdown
+                          options={options}
+                          onChange={this._onSelect}
+                          value={defaultOption}
+                          placeholder="Select an Quantity"
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
