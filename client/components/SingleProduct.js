@@ -40,6 +40,7 @@ class SingleProduct extends React.Component {
   render() {
     const product = this.props.product
     const defaultOption = this.state.selected
+    console.log('product', product)
     return (
       <div>
         <h1>{product.title}</h1>
@@ -60,8 +61,21 @@ class SingleProduct extends React.Component {
             />
           </button>
         </div>
-        <h3> add to cart</h3>
-        <h3> Quantity => dropdown list or form to input amount to purchase</h3>
+        <h3>Customer Reviews</h3>
+        <div>
+          {product.reviews &&
+            product.reviews.map(review => {
+              return (
+                <div key={review.id}>
+                  <div>
+                    {`${review.rating}/5  `}
+                    <strong>{review.title}</strong>
+                  </div>
+                  <p>{review.description}</p>
+                </div>
+              )
+            })}
+        </div>
       </div>
     )
   }
