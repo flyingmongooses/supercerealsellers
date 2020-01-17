@@ -70,7 +70,7 @@ export default class Checkout extends Component {
           value={this.state.zip}
         />
         <button type="submit" value="Submit">
-          Submit
+          Place Order
         </button>
       </form>
     )
