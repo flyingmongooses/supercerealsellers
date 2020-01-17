@@ -44,10 +44,10 @@ class SingleProduct extends React.Component {
     return (
       <div>
         <h1>{product.title}</h1>
+        <img src={product.imageUrl} id="all-products-img" />
         <p>{product.description}</p>
         <p>${product.price / 100}</p>
         <p>{product.inventory}</p>
-        <img src={product.imageUrl} />
         <button type="button" onClick={this.handleClick} value={product.id}>
           Add to cart
         </button>
