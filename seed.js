@@ -17,7 +17,8 @@ const seed = async () => {
       address: '909 N Campbell',
       city: 'Chicago',
       state: 'IL',
-      zipcode: '60622'
+      zipcode: '60622',
+      role: 'admin'
     })
     const userPromises = []
     for (let i = 0; i < 100; i++) {
