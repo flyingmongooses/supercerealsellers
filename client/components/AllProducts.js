@@ -39,13 +39,11 @@ class AllProducts extends React.Component {
     this.setState({selected: ''})
   }
   _onSelect(option) {
-    console.log('You selected ', option.label)
     this.setState({selected: option})
   }
   render() {
     const products = this.props.products
     const defaultOption = this.state.selected
-    console.log('state', this.state.selected)
     return (
       <div>
         <SearchBar />
