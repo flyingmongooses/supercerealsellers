@@ -10,19 +10,24 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/reviews/:id', async (req, res, next) => {
-  try {
-    const productReviews = await Product.findByPk(req.params.id, {
-      include: [{model: Review}]
-    })
-    res.json(productReviews)
-  } catch (err) {
-    next(err)
-  }
-})
+
+//is this still needed?
+// router.get('/reviews/:id', async (req, res, next) => {
+//   try {
+//     const productReviews = await Product.findByPk(req.params.id, {
+//       include: [{model: Review}]
+//     })
+//     res.json(productReviews)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleProduct = await Product.findByPk(req.params.id)
+    const singleProduct = await Product.findByPk(req.params.id, {
+      include: [{model: Review}]
+    })
     res.json(singleProduct)
   } catch (err) {
     next(err)
