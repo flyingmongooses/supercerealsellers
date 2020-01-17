@@ -8,19 +8,7 @@ import {fetchCategories} from '../store/allCategories'
 import {makeOrder} from '../store/orders'
 import Dropdown from 'react-dropdown'
 
-const options = [
-  {value: '1', label: '1'},
-  {value: '2', label: '2'},
-  {value: '3', label: '3'},
-  {value: '4', label: '4'},
-  {value: '5', label: '5'},
-  {value: '6', label: '6'},
-  {value: '7', label: '7'},
-  {value: '8', label: '8'},
-  {value: '9', label: '9'},
-  {value: '10', label: '10'}
-]
-const defaultOption = options[0]
+const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 /**
  * COMPONENT
@@ -28,20 +16,34 @@ const defaultOption = options[0]
 class AllProducts extends React.Component {
   constructor() {
     super()
+    this.state = {
+      selected: ''
+    }
     this.handleClick = this.handleClick.bind(this)
+    this._onSelect = this._onSelect.bind(this)
   }
   componentDidMount() {
     this.props.fetchProducts()
     this.props.fetchCategories()
   }
   handleClick(event) {
+    let quantity = parseInt(this.state.selected.value)
+    if (!quantity) {
+      quantity = 1
+    }
     this.props.makeOrder({
       userId: this.props.user.id,
-      productId: event.target.value
+      productId: event.target.value,
+      quantity
     })
+    this.setState({selected: ''})
+  }
+  _onSelect(option) {
+    this.setState({selected: option})
   }
   render() {
     const products = this.props.products
+    const defaultOption = this.state.selected
     return (
       <div>
         <SearchBar />
@@ -74,13 +76,12 @@ class AllProducts extends React.Component {
                       Add to cart
                     </button>
                     <div>
-                      <p>Quantity</p>
                       <button>
                         <Dropdown
                           options={options}
                           onChange={this._onSelect}
                           value={defaultOption}
-                          placeholder="Select an option"
+                          placeholder="Select a Quantity"
                         />
                       </button>
                     </div>
