@@ -15,10 +15,14 @@ const deleteProduct = productId => {
 }
 
 export const makeOrder = info => {
-  const {userId, productId} = info
+  const {userId, productId, quantity} = info
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/orders', {userId, productId})
+      const {data} = await axios.post('/api/orders', {
+        userId,
+        productId,
+        quantity
+      })
       dispatch(createOrder(data))
     } catch (err) {
       console.log(err)
@@ -54,7 +58,6 @@ export const removeProduct = info => {
 }
 
 const orderReducer = (state = {}, action) => {
-  console.log('action', action.productId)
   switch (action.type) {
     case CREATE_ORDER:
       return action.order
