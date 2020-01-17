@@ -77,3 +77,16 @@ router.put('/delete', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const orderId = req.params.id
+    const order = await Order.findByPk(orderId)
+    console.log('before', order)
+    await order.update({status: 'processing'})
+    console.log('after', order)
+    res.json(order)
+  } catch (err) {
+    console.log(err)
+  }
+})

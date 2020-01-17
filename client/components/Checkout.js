@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {finishOrder} from '../store/orders'
 
-export default class Checkout extends Component {
+export class Checkout extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -21,9 +23,15 @@ export default class Checkout extends Component {
   }
   handleSubmit(event) {
     event.preventDefault()
+    try {
+      this.props.finishOrder(this.props.order.id)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
+    console.log('props', this.props.order)
     return (
       <form onSubmit={this.handleSubmit}>
         <h2>Checkout</h2>
@@ -76,3 +84,17 @@ export default class Checkout extends Component {
     )
   }
 }
+
+const mapState = state => {
+  return {
+    order: state.order
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    finishOrder: id => dispatch(finishOrder(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(Checkout)
