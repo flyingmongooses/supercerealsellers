@@ -36,14 +36,12 @@ export const fetchOrder = id => {
   }
 }
 export const removeProduct = info => {
-  console.log(info)
   const {id} = info
   let {productId} = info
   productId = Number(productId)
   return async dispatch => {
     try {
       const {data} = await axios.put(`/api/orders/delete`, {id, productId})
-      console.log(data)
       if (data === 'OK') {
         dispatch(deleteProduct(productId))
       }
@@ -54,7 +52,6 @@ export const removeProduct = info => {
 }
 
 const orderReducer = (state = {}, action) => {
-  console.log('action', action.productId)
   switch (action.type) {
     case CREATE_ORDER:
       return action.order
@@ -64,7 +61,6 @@ const orderReducer = (state = {}, action) => {
       return {
         ...state,
         products: state.products.filter(product => {
-          console.log('product.id', product.id)
           return product.id !== action.productId
         })
       }
