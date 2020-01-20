@@ -9,7 +9,7 @@ let totalItems = 0
 class Cart extends React.Component {
   constructor() {
     super()
-    
+
     this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
