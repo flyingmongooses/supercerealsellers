@@ -75,6 +75,14 @@ class SingleProduct extends React.Component {
                 </div>
               )
             })}
+          {product.reviews && product.reviews.length === 0 ? (
+            <div>
+              <div>No reviews yet...</div>
+              <button>Click here to write a review!</button>
+            </div>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     )

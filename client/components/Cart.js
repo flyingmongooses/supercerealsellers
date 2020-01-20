@@ -9,7 +9,7 @@ let totalItems = 0
 class Cart extends React.Component {
   constructor() {
     super()
-    
+
     this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
@@ -28,7 +28,6 @@ class Cart extends React.Component {
   }
   render() {
     const {order} = this.props
-    const productsInCart = this.props.order.products
     return (
       <div>
         <h1>Your Cart</h1>
@@ -56,6 +55,11 @@ class Cart extends React.Component {
                 )
               })}
           </h3>
+          {order.products && order.products.length === 0 ? (
+            <div> Your cart is currently empty</div>
+          ) : (
+            <div />
+          )}
         </div>
         <h3>
           {order.products &&
