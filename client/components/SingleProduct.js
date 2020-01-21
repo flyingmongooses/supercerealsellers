@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
 import {makeOrder} from '../store/orders'
 import Dropdown from 'react-dropdown'
+import AddReview from './AddReview'
 
 const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
