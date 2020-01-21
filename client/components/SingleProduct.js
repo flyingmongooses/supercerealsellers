@@ -9,6 +9,7 @@ const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 /**
  * COMPONENT
  */
+import './styles/SingleProduct.css'
 class SingleProduct extends React.Component {
   constructor() {
     super()
@@ -23,7 +24,7 @@ class SingleProduct extends React.Component {
     this.props.fetchSingleProduct(productId)
   }
   handleClick(event) {
-    let quantity = parseInt(this.state.selected.value)
+    let quantity = parseInt(this.state.selected.value, 10)
     if (!quantity) {
       quantity = 1
     }
@@ -42,17 +43,57 @@ class SingleProduct extends React.Component {
     const defaultOption = this.state.selected
     console.log('product', product)
     return (
-      <div>
-        <h1>{product.title}</h1>
-        <img src={product.imageUrl} id="all-products-img" />
-        <p>{product.description}</p>
-        <p>${product.price / 100}</p>
-        <p>{product.inventory}</p>
-        <button type="button" onClick={this.handleClick} value={product.id}>
-          Add to cart
-        </button>
-        <div>
-          <button>
+      <div id="single-product-container">
+        {/* PRODUCT IMAGE */}
+        <div id="single-image">
+          <img src={product.imageUrl} alt={product.title} />
+        </div>
+        {/* PRODUCT INFORMATION */}
+        <div id="product-info">
+          <h2>{product.title}</h2>
+          <hr />
+          <div>
+            <p>
+              <small>Description:</small>
+            </p>
+            <p>{product.description}</p>
+          </div>
+          <hr />
+          <p>
+            Inventory:{' '}
+            {product.inventory < 101
+              ? `${product.inventory} remaining`
+              : 'Available'}
+            <br />
+            <small>Shipped and packed by Flying Mongooses</small>
+          </p>
+
+          <button
+            type="button"
+            onClick={() =>
+              alert(
+                'Flying mongooses are adding your item to your wishlist...if someone implements that feature :)'
+              )
+            }
+          >
+            Add to Wishlist
+          </button>
+        </div>
+        {/* CART, QUANTITY, WISHLIST */}
+        <div id="add-to-cart-quantity">
+          <p id="price">
+            <span>Price: </span>
+            <strong>${product.price / 100}</strong>
+          </p>
+          <button
+            id="add-to-cart-btn"
+            type="button"
+            onClick={this.handleClick}
+            value={product.id}
+          >
+            Add to Cart
+          </button>
+          <button type="button">
             <Dropdown
               options={options}
               onChange={this._onSelect}
@@ -61,20 +102,24 @@ class SingleProduct extends React.Component {
             />
           </button>
         </div>
-        <h3>Customer Reviews</h3>
-        <div>
-          {product.reviews &&
-            product.reviews.map(review => {
-              return (
-                <div key={review.id}>
-                  <div>
-                    {`${review.rating}/5  `}
+        {/* REVIEWS */}
+        <div id="reviews">
+          <h3>Customer Reviews</h3>
+          <div>
+            {product.reviews &&
+              product.reviews.map(review => {
+                return (
+                  <div id="review" key={review.id}>
+                    <p>
+                      Rated <mark>{review.rating} out of 5</mark> by{' '}
+                      <mark>User {review.userId}</mark>
+                    </p>
                     <strong>{review.title}</strong>
+                    <p>{review.description}</p>
                   </div>
-                  <p>{review.description}</p>
-                </div>
-              )
-            })}
+                )
+              })}
+          </div>
         </div>
       </div>
     )
