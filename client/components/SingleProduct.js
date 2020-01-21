@@ -42,7 +42,8 @@ class SingleProduct extends React.Component {
   render() {
     const product = this.props.product
     const defaultOption = this.state.selected
-    console.log('product', product)
+    const reviews = this.props.product.reviews
+
     return (
       <div id="single-product-container">
         {/* PRODUCT IMAGE */}
@@ -107,8 +108,8 @@ class SingleProduct extends React.Component {
         <div id="reviews">
           <h3>Customer Reviews</h3>
           <div>
-            {product.reviews &&
-              product.reviews.map(review => {
+            {reviews && reviews.length > 0 ? (
+              reviews.map(review => {
                 return (
                   <div id="review" key={review.id}>
                     <p>
@@ -119,7 +120,14 @@ class SingleProduct extends React.Component {
                     <p>{review.description}</p>
                   </div>
                 )
-              })}
+              })
+            ) : (
+              <div>
+                <div>No Customer Reviews Yet...</div>
+                <div> Be the first to add one! </div>
+                {/* this could be a good place to add a link to make a review */}
+              </div>
+            )}
           </div>
         </div>
       </div>
