@@ -2,9 +2,14 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-const adminCheck = (req, res, next) => {
+const adminCheck = async (req, res, next) => {
   try {
-    if (req.session.user && req.session.user.role === 'ADMIN') {
+    const person = await User.findOne({
+      where: {
+        id: req.session.passport.user
+      }
+    })
+    if (person.role === 'admin') {
       next()
     } else {
       res.status(403).json('Get out of here, pal')
@@ -14,7 +19,7 @@ const adminCheck = (req, res, next) => {
   }
 }
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminCheck, async (req, res, next) => {
   try {
     const users = await User.findAll()
     res.json(users)
@@ -32,9 +37,12 @@ router.get('/:id', adminCheck, async (req, res, next) => {
   }
 })
 
-router.post('/', adminCheck, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body)
     const user = await User.create(req.body)
+    req.session.userId = user.id
+    console.log(req.session)
     res.json(user)
   } catch (err) {
     next(err)

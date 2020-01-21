@@ -19,7 +19,7 @@ const adminCheck = async (req, res, next) => {
   }
 }
 
-router.use('/users', adminCheck, require('./users'))
+router.use('/users', require('./users'))
 router.use('/products', require('./products'))
 router.use('/orders', require('./orders'))
 router.use('/search', require('./search'))
