@@ -38,8 +38,13 @@ router.post('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/me', (req, res) => {
-  res.json(req.user)
+router.get('/me', async (req, res) => {
+  if (req.session.userId) {
+    const currentUser = await User.findByPk(req.session.userId)
+    res.json(currentUser)
+  } else {
+    res.json(req.user)
+  }
 })
 
 router.use('/google', require('./google'))
