@@ -1,8 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchCategory} from '../store/singleCategory'
-import {withRouter} from 'react-router-dom'
 
 class CategoryList extends React.Component {
   render() {

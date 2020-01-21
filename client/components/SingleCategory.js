@@ -1,6 +1,7 @@
 import React from 'react'
 import {fetchCategory} from '../store/singleCategory'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class SingleCategory extends React.Component {
   componentDidMount() {
@@ -14,7 +15,11 @@ class SingleCategory extends React.Component {
         <h1>{category.name}</h1>
         {category.products &&
           category.products.map(product => {
-            return <h4 key={product.id}>{product.title}</h4>
+            return (
+              <Link to={`/products/${product.id}`} key={product.id}>
+                {product.title}
+              </Link>
+            )
           })}
       </div>
     )
