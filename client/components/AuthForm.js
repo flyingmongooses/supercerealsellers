@@ -6,23 +6,24 @@ import {auth} from '../store'
 /**
  * COMPONENT
  */
+import './styles/AuthForm.css'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div id="login-signup">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
-            <small>Email</small>
+            <small>Email </small>
+            <input name="email" type="text" />
           </label>
-          <input name="email" type="text" />
         </div>
         <div>
           <label htmlFor="password">
-            <small>Password</small>
+            <small>Password </small>
+            <input name="password" type="password" />
           </label>
-          <input name="password" type="password" />
         </div>
         <div>
           <button type="submit">{displayName}</button>

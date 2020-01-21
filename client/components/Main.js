@@ -4,18 +4,21 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {postCurrentUser} from '../store/currentUser'
 
+import './styles/Main.css'
 class Main extends React.Component {
   render() {
     return (
-      <div>
+      <div id="main">
         <h1>Welcome to Super Cereal Sellers!</h1>
-        <button>
+        <button type="button">
           <Link to="/login">Login</Link>
         </button>
-        <button>
+        <button type="button">
           <Link to="/create-account">Sign Up</Link>
         </button>
+        <p>or</p>
         <button
+          type="button"
           onClick={() => {
             console.log('button')
             this.props.postUser({
@@ -30,7 +33,7 @@ class Main extends React.Component {
             })
           }}
         >
-          Continue as Guest
+          <Link to="#">Continue as a Guest</Link>
         </button>
       </div>
     )

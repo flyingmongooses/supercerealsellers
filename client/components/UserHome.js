@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchAllUserOrders} from '../store/userAllOrders'
+import './styles/UserHome.css'
 
 /**
  * COMPONENT
@@ -13,7 +14,6 @@ class UserHome extends Component {
   render() {
     const {email} = this.props
     const userOrders = this.props.userOrders
-    console.log('props?', this.props)
 
     return (
       <div>

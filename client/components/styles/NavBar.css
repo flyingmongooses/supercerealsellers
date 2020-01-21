@@ -1,0 +1,25 @@
+#navbar {
+  background: center / cover url('./images/banner-cereal_1400x400.png');
+  background-color: orange;
+  color: blanchedalmond;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  margin: 1rem;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#navbar h2 {
+  color: white;
+  text-shadow: 1px 1px 4px white;
+  padding: 0.3rem;
+  padding-bottom: 1rem;
+  background-color: rgb(128, 128, 128, 0);
+  border-radius: 5px;
+}
