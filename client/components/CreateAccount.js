@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {postCurrentUser} from '../store'
 
+import './styles/CreateAccount.css'
 export class CreateAccount extends React.Component {
   constructor(props) {
     super(props)
@@ -53,66 +54,90 @@ export class CreateAccount extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Create Account</h2>
+      <div id="create-account">
+        <h3>Create Account</h3>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="firstName">First Name: </label>
-          <input
-            type="text"
-            name="firstName"
-            onChange={this.handleChange}
-            value={this.state.firstName}
-          />
-          <label htmlFor="lastName">Last Name: </label>
-          <input
-            type="text"
-            name="lastName"
-            onChange={this.handleChange}
-            value={this.state.lastName}
-          />
-          <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            name="email"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            name="password"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <label htmlFor="address">Address: </label>
-          <input
-            type="text"
-            name="address"
-            onChange={this.handleChange}
-            value={this.state.address}
-          />
-          <label htmlFor="city">City: </label>
-          <input
-            type="text"
-            name="city"
-            onChange={this.handleChange}
-            value={this.state.city}
-          />
-          <label htmlFor="state">State: </label>
-          <input
-            type="text"
-            name="state"
-            onChange={this.handleChange}
-            value={this.state.state}
-          />
-          <label htmlFor="zipcode">Zipcode: </label>
-          <input
-            type="text"
-            name="zipcode"
-            onChange={this.handleChange}
-            value={this.state.zipcode}
-          />
-          <input type="submit" value="Create Account" />
+          <label htmlFor="firstName">
+            First Name
+            <input
+              required
+              type="text"
+              name="firstName"
+              onChange={this.handleChange}
+              value={this.state.firstName}
+            />
+          </label>
+          <label htmlFor="lastName">
+            Last Name
+            <input
+              required
+              type="text"
+              name="lastName"
+              onChange={this.handleChange}
+              value={this.state.lastName}
+            />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              required
+              type="email"
+              name="email"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+          </label>
+          <label htmlFor="password">
+            Password
+            <input
+              required
+              type="password"
+              name="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+            />
+          </label>
+          <label htmlFor="address">
+            Address
+            <input
+              required
+              type="text"
+              name="address"
+              onChange={this.handleChange}
+              value={this.state.address}
+            />
+          </label>
+          <label htmlFor="city">
+            City
+            <input
+              required
+              type="text"
+              name="city"
+              onChange={this.handleChange}
+              value={this.state.city}
+            />
+          </label>
+          <label htmlFor="state">
+            State
+            <input
+              required
+              type="text"
+              name="state"
+              onChange={this.handleChange}
+              value={this.state.state}
+            />
+          </label>
+          <label htmlFor="zipcode">
+            Zipcode
+            <input
+              required
+              type="text"
+              name="zipcode"
+              onChange={this.handleChange}
+              value={this.state.zipcode}
+            />
+          </label>
+          <button type="submit">Create Account</button>
         </form>
       </div>
     )
