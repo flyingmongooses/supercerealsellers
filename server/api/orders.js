@@ -60,7 +60,11 @@ router.get('/user-order/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const {userId, productId, quantity} = req.body
+    const {productId, quantity} = req.body
+    let {userId} = req.body
+    if (!userId) {
+      userId = req.session.userId
+    }
     const order = await Order.findOrCreate({
       where: {userId},
       include: [{model: Product}]

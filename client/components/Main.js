@@ -29,7 +29,8 @@ class Main extends React.Component {
               address: '100 Main',
               city: 'Chicago',
               state: 'IL',
-              zipcode: '60622'
+              zipcode: '60622',
+              role: 'guest'
             })
           }}
         >
