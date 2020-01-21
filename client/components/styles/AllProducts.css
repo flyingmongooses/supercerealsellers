@@ -1,0 +1,47 @@
+#all-products-page {
+  display: flex;
+  border: 2px solid red;
+}
+
+#all-products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+/* #all-products {
+  display: flex;
+  border: 2px solid purple;
+  flex-direction: column;
+  align-items: flex-end;
+} */
+#all-products-box {
+  width: 300px;
+  height: auto;
+}
+
+#all-products-box {
+  border: 2px solid gold;
+  /* width: 90%; */
+}
+
+#all-products-img {
+  width: auto;
+  height: 300px;
+  /* align-; */
+}
+
+#all-products-btns {
+  display: flex;
+  border: 2px solid green;
+}
+
+#all-products-info {
+  display: flex;
+  border: 2px solid blue;
+  flex-direction: column;
+}
+
+#all-products-title {
+  display: flex;
+  border: 2px solid black;
+}

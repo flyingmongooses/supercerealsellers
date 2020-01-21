@@ -13,6 +13,7 @@ const options = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 /**
  * COMPONENT
  */
+import './styles/AllProducts.css'
 class AllProducts extends React.Component {
   constructor() {
     super()
@@ -44,6 +45,8 @@ class AllProducts extends React.Component {
   render() {
     const products = this.props.products
     const defaultOption = this.state.selected
+    let totalRating
+    let averageRating
     return (
       <div>
         <SearchBar />
@@ -63,14 +66,11 @@ class AllProducts extends React.Component {
                       1
                     )}`}</h3>
                   </Link>
-                  <p>{product.description}</p>
                   <p>Price: ${product.price / 100}</p>
-                  <p>Current Inventory: {product.inventory}</p>
                   <div>
                     {!product.reviews.length ? (
                       <div>
                         <div>No reviews yet...</div>
-                        <button>Click here to write a review!</button>
                       </div>
                     ) : (
                       <div>
@@ -80,11 +80,6 @@ class AllProducts extends React.Component {
                           <strong>{product.reviews[0].title}</strong>
                         </div>
                         <div>{product.reviews[0].description}</div>
-                        <button>
-                          <Link to={`products/${product.id}`}>
-                            See more reviews for this product
-                          </Link>
-                        </button>
                       </div>
                     )}
                   </div>
@@ -96,16 +91,6 @@ class AllProducts extends React.Component {
                     >
                       Add to cart
                     </button>
-                    <div>
-                      <button>
-                        <Dropdown
-                          options={options}
-                          onChange={this._onSelect}
-                          value={defaultOption}
-                          placeholder="Select a Quantity"
-                        />
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
