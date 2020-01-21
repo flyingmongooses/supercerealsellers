@@ -29,7 +29,9 @@ class SearchBar extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="search">Search Cereal</label>
+            <label htmlFor="search">
+              <strong>Search for your favorite Cereal</strong>
+            </label>
             <input
               name="search"
               type="text"

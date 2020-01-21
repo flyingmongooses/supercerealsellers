@@ -21,6 +21,7 @@
 
 #all-products-box {
   border: 2px solid gold;
+  align-content: center;
   /* width: 90%; */
 }
 
@@ -30,18 +31,32 @@
   /* align-; */
 }
 
-#all-products-btns {
+#all-products-btn {
   display: flex;
   border: 2px solid green;
+  justify-content: center;
 }
+
+/* #all-products-btns {
+  display: flex;
+  border: 2px solid red;
+  flex-direction: row;
+} */
 
 #all-products-info {
   display: flex;
-  border: 2px solid blue;
   flex-direction: column;
 }
 
 #all-products-title {
   display: flex;
-  border: 2px solid black;
+  justify-content: center;
+}
+
+#all-products-review {
+  display: flex;
+  min-height: 45px;
+  height: auto;
+  justify-content: center;
+  align-content: center;
 }

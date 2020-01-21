@@ -45,8 +45,7 @@ class AllProducts extends React.Component {
   render() {
     const products = this.props.products
     const defaultOption = this.state.selected
-    let totalRating
-    let averageRating
+
     return (
       <div>
         <SearchBar />
@@ -66,8 +65,8 @@ class AllProducts extends React.Component {
                       1
                     )}`}</h3>
                   </Link>
-                  <p>Price: ${product.price / 100}</p>
-                  <div>
+                  <p id="all-products-price">Price: ${product.price / 100}</p>
+                  <div id="all-products-review">
                     {!product.reviews.length ? (
                       <div>
                         <div>No reviews yet...</div>
@@ -83,14 +82,27 @@ class AllProducts extends React.Component {
                       </div>
                     )}
                   </div>
-                  <div id="all-products-btns">
-                    <button
-                      type="button"
-                      onClick={this.handleClick}
-                      value={product.id}
-                    >
-                      Add to cart
-                    </button>
+                  <div>
+                    <div>
+                      <button
+                        type="button"
+                        id="all-products-btn"
+                        onClick={this.handleClick}
+                        value={product.id}
+                      >
+                        Add to cart
+                      </button>
+                    </div>
+                    <div>
+                      <button type="button" id="all-products-btn">
+                        <Dropdown
+                          options={options}
+                          onChange={this._onSelect}
+                          value={defaultOption}
+                          placeholder="Select a Quantity"
+                        />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
