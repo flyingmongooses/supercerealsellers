@@ -5,10 +5,10 @@ import {connect} from 'react-redux'
 import {postCurrentUser} from '../store/currentUser'
 
 import './styles/Main.css'
-import userReducer from '../store/user'
 class Main extends React.Component {
   render() {
-    if (!this.props.user) {
+    console.log('props', this.props)
+    if (!this.props.user.id) {
       return (
         <div id="main">
           <h1>Welcome to Super Cereal Sellers!</h1>
@@ -36,7 +36,7 @@ class Main extends React.Component {
               })
             }}
           >
-            <Link to="#">Continue as a Guest</Link>
+            <Link to="/products">Continue as a Guest</Link>
           </button>
         </div>
       )
