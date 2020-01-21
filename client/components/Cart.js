@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchOrder, removeProduct} from '../store/orders'
 import {Link} from 'react-router-dom'
+import Stripe from './Stripe'
 
 let totalPrice = 0
 let totalItems = 0
@@ -9,7 +10,7 @@ let totalItems = 0
 class Cart extends React.Component {
   constructor() {
     super()
-    
+
     this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
@@ -65,9 +66,7 @@ class Cart extends React.Component {
             })}
           Total({totalItems} Items): ${(totalPrice / 100).toFixed(2)}
         </h3>
-        <Link to="/checkout">
-          <button type="button">Checkout</button>
-        </Link>
+        <Stripe />
         <Link to="/products">Continue Shopping</Link>
       </div>
     )
