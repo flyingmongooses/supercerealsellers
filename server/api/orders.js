@@ -29,10 +29,24 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-///this displays all of the orders and order items for a given user based on the user's id///
+///this displays the "open" order and order items for a given user based on the user's id///
 router.get('/user/:id', async (req, res, next) => {
   try {
-    const singleUserOrders = await Order.findOne({
+    const singleUserOrder = await Order.findOne({
+      where: {userId: req.params.id, status: 'open'},
+      include: [{model: Product}]
+    })
+    res.json(singleUserOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+///this displays ALL orders and order-items for a given user///
+
+router.get('/user-order/:id', async (req, res, next) => {
+  try {
+    const singleUserOrders = await Order.findAll({
       where: {userId: req.params.id},
       include: [{model: Product}]
     })
