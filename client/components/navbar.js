@@ -4,11 +4,17 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchOrder} from '../store/orders'
+import logo from './styles/images/superCerealStore-SesameSt.png'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+import './styles/NavBar.css'
+const NavBar = ({handleClick, isLoggedIn}) => (
   <div id="navbar">
-    <h1>Super Cereal Sellers</h1>
-    <h3>The best place to get that hard to find cereal!</h3>
+    <div id="logo">
+      <Link to="/">
+        <img src={logo} alt="logo image" />
+      </Link>
+      {/* <h2>The best place to get that hard to find cereal!</h2> */}
+    </div>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -23,12 +29,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
+          <Link to="/home">Home</Link>
           <Link to="/login">Login</Link>
           <Link to="/create-account">Sign Up</Link>
         </div>
       )}
     </nav>
-    <hr />
   </div>
 )
 
@@ -51,12 +57,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(NavBar)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+NavBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

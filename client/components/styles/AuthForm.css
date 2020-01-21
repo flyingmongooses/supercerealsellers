@@ -1,0 +1,24 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#login-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #fee400;
+  border-radius: 5%;
+  box-shadow: 10px 10px 10px bisque;
+  width: fit-content;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 0;
+  font-size: 26px;
+}
+
+div label {
+  padding-right: 20px;
+}
