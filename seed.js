@@ -49,8 +49,8 @@ const seed = async () => {
         await Product.create({
           title: faker.random.word(),
           description: faker.random.words(),
-          price: 299,
-          inventory: 100
+          price: faker.random.number({min: 199, max: 1400}),
+          inventory: faker.random.number({min: 10, max: 1000})
         })
       )
       Promise.all(productPromises)
