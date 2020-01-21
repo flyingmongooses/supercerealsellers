@@ -18,33 +18,35 @@ class UserHome extends Component {
     return (
       <div>
         <div>
-          <h3>Welcome, {email}</h3>
+          <h2>Welcome, {email}</h2>
         </div>
-        <h3>Your Orders</h3>
-        {userOrders.length ? (
-          userOrders.map(order => {
-            return (
-              <div key={order.id}>
-                <h3>Order Id: {order.id}</h3>
-                <h3>Order Status: {order.status.toUpperCase()}</h3>
-                {order.products.map(product => {
-                  return (
-                    <div key={product.id}>
-                      <div>
-                        <strong>{product.title}</strong>
-                        {`, Quantity: ${product.order_items.quantity}`}
+        <div id="user-home-orders">
+          <h2 id="user-home-title">Your Orders</h2>
+          {userOrders.length ? (
+            userOrders.map(order => {
+              return (
+                <div key={order.id} id="user-home-order-info">
+                  <h3>Order Id: {order.id}</h3>
+                  <h3>Order Status: {order.status.toUpperCase()}</h3>
+                  {order.products.map(product => {
+                    return (
+                      <div key={product.id}>
+                        <div>
+                          <strong>{product.title}</strong>
+                          {`, Quantity: ${product.order_items.quantity}`}
+                        </div>
+                        <div>{product.description}</div>
+                        <br />
                       </div>
-                      <div>{product.description}</div>
-                      <br />
-                    </div>
-                  )
-                })}
-              </div>
-            )
-          })
-        ) : (
-          <div>No Recent Orders</div>
-        )}
+                    )
+                  })}
+                </div>
+              )
+            })
+          ) : (
+            <div>No Recent Orders</div>
+          )}
+        </div>
       </div>
     )
   }
