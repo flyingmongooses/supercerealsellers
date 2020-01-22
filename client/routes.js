@@ -12,6 +12,7 @@ import SingleProduct from './components/SingleProduct'
 import SingleCategory from './components/SingleCategory'
 import Main from './components/Main'
 import Cart from './components/Cart'
+import Success from './components/Success'
 
 /**
  * COMPONENT
@@ -42,6 +43,10 @@ class Routes extends Component {
             <Route path="/users" component={AllUsers} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/cart" component={Cart} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:id" component={SingleProduct} />
+            <Route exact path="/categories/:id" component={SingleCategory} />
+            <Route path="/success" component={Success} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

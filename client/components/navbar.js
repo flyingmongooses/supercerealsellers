@@ -4,10 +4,11 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchOrder} from '../store/orders'
+import {fetchProducts} from '../store/product'
 import logo from './styles/images/superCerealStore-SesameSt.png'
 
 import './styles/NavBar.css'
-const NavBar = ({handleClick, isLoggedIn}) => (
+const NavBar = ({handleClick, isLoggedIn, fetchProducts}) => (
   <div id="navbar">
     <div id="logo">
       {isLoggedIn ? (
@@ -26,7 +27,9 @@ const NavBar = ({handleClick, isLoggedIn}) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <Link to="/products">All Products</Link>
+          <Link to="/products" onClick={() => fetchProducts}>
+            All Products
+          </Link>
           <Link to="/cart">Cart</Link>
           <Link id="logout-lnk" to="#" onClick={handleClick}>
             Logout
@@ -59,7 +62,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    }
+    },
+    fetchProducts: () => dispatch(fetchProducts)
   }
 }
 

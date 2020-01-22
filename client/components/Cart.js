@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchOrder, removeProduct} from '../store/orders'
 import {Link} from 'react-router-dom'
+import Stripe from './Stripe'
 
 let totalPrice = 0
 let totalItems = 0
@@ -28,55 +29,57 @@ class Cart extends React.Component {
   }
   render() {
     const {order} = this.props
-    return (
-      <div>
-        <h1>Your Cart</h1>
+    if (!order) {
+      return <div>Nothing in your cart yet</div>
+    } else {
+      return (
         <div>
+          <h1>Your Cart</h1>
+          <div>
+            <h3>
+              {order.products &&
+                order.products.map(product => {
+                  return (
+                    <div key={product.id}>
+                      <div>
+                        {`${product.title[0].toUpperCase()}${product.title.slice(
+                          1
+                        )}`}{' '}
+                      </div>
+                      <div>${product.price / 100}</div>
+                      <div>Qty: {product.order_items.quantity}</div>
+                      <button
+                        type="button"
+                        onClick={this.handleClick}
+                        value={product.id}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )
+                })}
+            </h3>
+            {order.products && order.products.length === 0 ? (
+              <div> Your cart is currently empty</div>
+            ) : (
+              <div />
+            )}
+          </div>
           <h3>
             {order.products &&
               order.products.map(product => {
-                return (
-                  <div key={product.id}>
-                    <div>
-                      {`${product.title[0].toUpperCase()}${product.title.slice(
-                        1
-                      )}`}{' '}
-                    </div>
-                    <div>${product.price / 100}</div>
-                    <div>Qty: {product.order_items.quantity}</div>
-                    <button
-                      type="button"
-                      onClick={this.handleClick}
-                      value={product.id}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )
+                totalPrice += product.price * product.order_items.quantity
+                totalItems += product.order_items.quantity
               })}
+            Total({totalItems} Items): ${(totalPrice / 100).toFixed(2)}
           </h3>
-          {order.products && order.products.length === 0 ? (
-            <div> Your cart is currently empty</div>
-          ) : (
-            <div />
-          )}
+          <Stripe />
+          <Link to="/products">
+            <button type="button">Continue Shopping</button>
+          </Link>
         </div>
-        <h3>
-          {order.products &&
-            order.products.map(product => {
-              totalPrice += product.price * product.order_items.quantity
-              totalItems += product.order_items.quantity
-            })}
-          Total({totalItems} Items): ${(totalPrice / 100).toFixed(2)}
-        </h3>
-        <Link to="/checkout">
-          <button type="button">Checkout</button>
-        </Link>
-        <Link to="/products">
-          <button type="button">Continue Shopping</button>
-        </Link>
-      </div>
-    )
+      )
+    }
   }
 }
 

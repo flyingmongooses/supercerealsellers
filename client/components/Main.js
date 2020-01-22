@@ -30,27 +30,41 @@ class Main extends React.Component {
     this.props.history.push('/products')
   }
   render() {
-    return (
-      <div id="main">
-        <h1>Welcome to Super Cereal Sellers!</h1>
-        <button type="button">
-          <Link to="/login">Login</Link>
-        </button>
-        <button type="button">
-          <Link to="/create-account">Sign Up</Link>
-        </button>
-        <p>or</p>
-        <button type="button" onClick={this.handleClick}>
-          <Link to="#">Continue as a Guest</Link>
-        </button>
-      </div>
-    )
+    console.log('props', this.props)
+    if (!this.props.user.id) {
+      return (
+        <div id="main">
+          <h1>Welcome to Super Cereal Sellers!</h1>
+          <button type="button">
+            <Link to="/login">Login</Link>
+          </button>
+          <button type="button">
+            <Link to="/create-account">Sign Up</Link>
+          </button>
+          <p>or</p>
+          <button type="button" onClick={this.handleClick}>
+            <Link to="/products">Continue as a Guest</Link>
+          </button>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <div>You're already logged in</div>
+          <Link to="/products">See all products</Link>
+        </div>
+      )
+    }
   }
 }
-
+const mapState = state => {
+  return {
+    user: state.currentUser
+  }
+}
 const mapDispatch = dispatch => {
   return {
     postUser: data => dispatch(postCurrentUser(data))
   }
 }
-export default connect(null, mapDispatch)(Main)
+export default connect(mapState, mapDispatch)(Main)
