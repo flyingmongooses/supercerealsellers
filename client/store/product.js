@@ -47,6 +47,16 @@ export const searchStuff = searchQuery => {
     }
   }
 }
+export const paginateProducts = page => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/products?page=${page - 1}`)
+      dispatch(setProducts(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
 /**
  * REDUCER

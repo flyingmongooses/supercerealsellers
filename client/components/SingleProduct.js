@@ -110,11 +110,16 @@ class SingleProduct extends React.Component {
           <div>
             {reviews && reviews.length > 0 ? (
               reviews.map(review => {
+                console.log(review.user)
                 return (
                   <div id="review" key={review.id}>
                     <p>
                       Rated <mark>{review.rating} out of 5</mark> by{' '}
-                      <mark>User {review.userId}</mark>
+                      <mark>
+                        {review.user
+                          ? `${review.user.firstName} ${review.user.lastName}`
+                          : 'User Anonymous'}
+                      </mark>
                     </p>
                     <strong>{review.title}</strong>
                     <p>{review.description}</p>

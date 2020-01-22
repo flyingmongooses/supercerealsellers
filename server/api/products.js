@@ -4,8 +4,23 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const products = await Product.findAll({include: [{model: Review}]})
-    res.json(products)
+    if (!req.query.page) {
+      const products = await Product.findAll({
+        include: [{model: Review, include: [{model: User}]}]
+      })
+      res.json(products)
+    } else {
+      const {page} = req.query
+      const pageSize = 20
+      const offset = page * pageSize
+      const limit = pageSize
+      const data = await Product.findAll({
+        limit,
+        offset,
+        include: [{model: Review, include: [{model: User}]}]
+      })
+      res.send(data)
+    }
   } catch (err) {
     next(err)
   }
@@ -26,7 +41,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const singleProduct = await Product.findByPk(req.params.id, {
-      include: [{model: Review}]
+      include: [{model: Review, include: [{model: User}]}]
     })
     res.json(singleProduct)
   } catch (err) {

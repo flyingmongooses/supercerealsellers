@@ -69,6 +69,7 @@ export const logout = () => async dispatch => {
 export const postCurrentUser = data => {
   return async dispatch => {
     try {
+      console.log('thunk', data)
       const response = await axios.post('/api/users', data)
       const newUser = response.data
       const user = addCurrentUser(newUser)
