@@ -52,7 +52,10 @@ class SingleProduct extends React.Component {
         </div>
         {/* PRODUCT INFORMATION */}
         <div id="product-info">
-          <h2>{product.title}</h2>
+          <h2>
+            {product.title &&
+              product.title[0].toUpperCase() + product.title.slice(1)}
+          </h2>
           <hr />
           <div>
             <p>

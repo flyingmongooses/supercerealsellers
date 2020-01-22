@@ -30,19 +30,19 @@ class SearchBar extends React.Component {
     console.log(this.props)
     const {search} = this.state
     return (
-      <div>
+      <div id="search-box">
+        <p>Search for your favorite Cereal:</p>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="search">
-              <strong>Search for your favorite Cereal</strong>
-            </label>
             <input
               name="search"
               type="text"
               value={search}
               onChange={this.handleChange}
             />
-            <button type="submit">Submit</button>
+            <button id="search-button" type="submit">
+              Search
+            </button>
           </div>
         </form>
       </div>
