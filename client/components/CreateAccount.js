@@ -64,87 +64,91 @@ export class CreateAccount extends React.Component {
     return (
       <div id="create-account">
         <h3>Create Account</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="firstName">
-            First Name
-            <input
-              required
-              type="text"
-              name="firstName"
-              onChange={this.handleChange}
-              value={this.state.firstName}
-            />
-          </label>
-          <label htmlFor="lastName">
-            Last Name
-            <input
-              required
-              type="text"
-              name="lastName"
-              onChange={this.handleChange}
-              value={this.state.lastName}
-            />
-          </label>
-          <label htmlFor="email">
-            Email
-            <input
-              required
-              type="email"
-              name="email"
-              onChange={this.handleChange}
-              value={this.state.email}
-            />
-          </label>
-          <label htmlFor="password">
-            Password
-            <input
-              required
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
-          </label>
-          <label htmlFor="address">
-            Address
-            <input
-              required
-              type="text"
-              name="address"
-              onChange={this.handleChange}
-              value={this.state.address}
-            />
-          </label>
-          <label htmlFor="city">
-            City
-            <input
-              required
-              type="text"
-              name="city"
-              onChange={this.handleChange}
-              value={this.state.city}
-            />
-          </label>
-          <label htmlFor="state">
-            State
-            <input
-              required
-              type="text"
-              name="state"
-              onChange={this.handleChange}
-              value={this.state.state}
-            />
-          </label>
-          <label htmlFor="zipcode">
-            Zipcode
-            <input
-              required
-              type="text"
-              name="zipcode"
-              onChange={this.handleChange}
-              value={this.state.zipcode}
-            />
-          </label>
+        <form id="create-acc-form" onSubmit={this.handleSubmit}>
+          <div className="inner-form-box">
+            <label htmlFor="firstName">
+              First Name
+              <input
+                required
+                type="text"
+                name="firstName"
+                onChange={this.handleChange}
+                value={this.state.firstName}
+              />
+            </label>
+            <label htmlFor="lastName">
+              Last Name
+              <input
+                required
+                type="text"
+                name="lastName"
+                onChange={this.handleChange}
+                value={this.state.lastName}
+              />
+            </label>
+            <label htmlFor="email">
+              Email
+              <input
+                required
+                type="email"
+                name="email"
+                onChange={this.handleChange}
+                value={this.state.email}
+              />
+            </label>
+            <label htmlFor="password">
+              Password
+              <input
+                required
+                type="password"
+                name="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+            </label>
+          </div>
+          <div className="inner-form-box">
+            <label htmlFor="address">
+              Address
+              <input
+                required
+                type="text"
+                name="address"
+                onChange={this.handleChange}
+                value={this.state.address}
+              />
+            </label>
+            <label htmlFor="city">
+              City
+              <input
+                required
+                type="text"
+                name="city"
+                onChange={this.handleChange}
+                value={this.state.city}
+              />
+            </label>
+            <label htmlFor="state">
+              State
+              <input
+                required
+                type="text"
+                name="state"
+                onChange={this.handleChange}
+                value={this.state.state}
+              />
+            </label>
+            <label htmlFor="zipcode">
+              Zipcode
+              <input
+                required
+                type="text"
+                name="zipcode"
+                onChange={this.handleChange}
+                value={this.state.zipcode}
+              />
+            </label>
+          </div>
           <button type="submit">Create Account</button>
         </form>
       </div>

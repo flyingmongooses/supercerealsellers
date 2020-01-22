@@ -40,23 +40,35 @@ class SingleProduct extends React.Component {
     this.setState({selected: option})
   }
   render() {
-    const product = this.props.product
+    const {product} = this.props
     const defaultOption = this.state.selected
     const reviews = this.props.product.reviews
-
-    return (
-      <div id="single-product-container">
-        {/* PRODUCT IMAGE */}
-        <div id="single-image">
-          <img src={product.imageUrl} alt={product.title} />
-        </div>
-        {/* PRODUCT INFORMATION */}
-        <div id="product-info">
-          <h2>{product.title}</h2>
-          <hr />
-          <div>
+    if (product) {
+      return (
+        <div id="single-product-container">
+          {/* PRODUCT IMAGE */}
+          <div id="single-image">
+            <img src={product.imageUrl} alt={product.title} />
+          </div>
+          {/* PRODUCT INFORMATION */}
+          <div id="product-info">
+            <h2>{product.title &&
+              product.title[0].toUpperCase() + product.title.slice(1)}</h2>
+            <hr />
+            <div>
+              <p>
+                <small>Description:</small>
+              </p>
+              <p>{product.description}</p>
+            <hr />
+            </div>
             <p>
-              <small>Description:</small>
+              Inventory:{' '}
+              {product.inventory < 101
+                ? `${product.inventory} remaining`
+                : 'Available'}
+              <br />
+              <small>Shipped and packed by Flying Mongooses</small>
             </p>
             <p>{product.description}</p>
           </div>
@@ -132,18 +144,68 @@ class SingleProduct extends React.Component {
                     <p>{review.description}</p>
                   </div>
                 )
-              })
-            ) : (
-              <div>
-                <div>No Customer Reviews Yet...</div>
-                <div> Be the first to add one! </div>
-                {/* this could be a good place to add a link to make a review */}
-              </div>
-            )}
+              }
+            >
+              Add to Wishlist
+            </button>
+          </div>
+          {/* CART, QUANTITY, WISHLIST */}
+          <div id="add-to-cart-quantity">
+            <p id="price">
+              <span>Price: </span>
+              <strong>${product.price / 100}</strong>
+            </p>
+            <button
+              id="add-to-cart-btn"
+              type="button"
+              onClick={this.handleClick}
+              value={product.id}
+            >
+              Add to Cart
+            </button>
+            <button type="button">
+              <Dropdown
+                options={options}
+                onChange={this._onSelect}
+                value={defaultOption}
+                placeholder="Select a Quantity"
+              />
+            </button>
+          </div>
+          {/* REVIEWS */}
+          <div id="reviews">
+            <h3>Customer Reviews</h3>
+            <div>
+              {reviews && reviews.length > 0 ? (
+                reviews.map(review => {
+                  return (
+                    <div id="review" key={review.id}>
+                      <p>
+                        Rated <mark>{review.rating} out of 5</mark> by{' '}
+                        <mark>User {review.userId}</mark>
+                      </p>
+                      <strong>{review.title}</strong>
+                      <p>{review.description}</p>
+                      {review === reviews[reviews.length - 1] ? (
+                        <AddReview />
+                      ) : (
+                        <div> </div>
+                      )}
+                    </div>
+                  )
+                })
+              ) : (
+                <div>
+                  <div>No Customer Reviews Yet...</div>
+                  <div> Be the first to add one! </div>
+                  <AddReview />
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

@@ -6,22 +6,21 @@ import {fetchCategory} from '../store/singleCategory'
 class CategoryList extends React.Component {
   render() {
     return (
-      <div>
-        <h3 id="category-title">Search by Category</h3>
-        <div id="category-all">
+      <div id="category-list">
+        <p>Filter by Category:</p>
+        <div id="categories">
           {this.props.categories &&
             this.props.categories.map(category => {
               return (
-                <div key={category.id}>
-                  <Link
-                    to={`categories/${category.id}`}
-                    key={category.id}
-                    onClick={this.handleClick}
-                    value={category.id}
-                  >
-                    {category.name}
-                  </Link>
-                </div>
+                <Link
+                  id="category-item"
+                  to={`categories/${category.id}`}
+                  key={category.id}
+                  onClick={this.handleClick}
+                  value={category.id}
+                >
+                  {category.name}
+                </Link>
               )
             })}
         </div>
