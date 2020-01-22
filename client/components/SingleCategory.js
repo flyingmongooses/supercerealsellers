@@ -8,7 +8,6 @@ class SingleCategory extends React.Component {
     this.props.fetchCategory(this.props.match.params.id)
   }
   render() {
-    console.log(this.props)
     const {category} = this.props
     return (
       <div>
@@ -16,9 +15,11 @@ class SingleCategory extends React.Component {
         {category.products &&
           category.products.map(product => {
             return (
-              <Link to={`/products/${product.id}`} key={product.id}>
-                {product.title}
-              </Link>
+              <div key={product.id}>
+                <Link to={`/products/${product.id}`} key={product.id}>
+                  {`${product.title[0].toUpperCase()}${product.title.slice(1)}`}
+                </Link>
+              </div>
             )
           })}
       </div>

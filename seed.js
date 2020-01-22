@@ -36,7 +36,19 @@ const seed = async () => {
         })
       )
     }
+
     Promise.all(userPromises)
+
+    const unhealthy = await Category.create({
+      name: 'Unhealthy'
+    })
+    const boring = await Category.create({
+      name: 'Boring'
+    })
+    const weird = await Category.create({
+      name: 'Weird'
+    })
+
     const booberry = await Product.create({
       title: 'Booberry',
       description: "It's like blueberry, but instead, it's boo.",
@@ -53,24 +65,33 @@ const seed = async () => {
           inventory: faker.random.number({min: 10, max: 1000})
         })
       )
-      Promise.all(productPromises)
+      const products = await Promise.all(productPromises)
+      for (let m = 0; m < products.length; m++) {
+        if (m % 3) {
+          await products[m].addCategory(unhealthy)
+        }
+        if (m % 2) {
+          await products[m].addCategory(weird)
+        }
+        if (m % 4) {
+          await products[m].addCategory(boring)
+        }
+      }
     }
     const firstOrder = await Order.create({
       status: 'open',
       userId: paul.id
     })
     await firstOrder.addProduct(booberry)
-    const unhealthy = await Category.create({
-      name: 'unhealthy'
-    })
+
     await booberry.addCategory(unhealthy)
     firstOrder.order_items = {
       quantity: 100
     }
     const booberryReview = await Review.create({
-      title: 'what is the title supposed to be?',
-      rating: 1,
-      description: 'this shit sucks'
+      title: 'Booberry rox!',
+      rating: 5,
+      description: 'I actually saw a ghost'
     })
     await booberry.addReview(booberryReview)
   } catch (err) {

@@ -12,7 +12,11 @@ class SearchBar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(event) {
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({[event.target.name]: event.target.value}, this.searchHelper)
+    // this.props.searchStuff(this.state.search.toLowerCase())
+  }
+  searchHelper() {
+    this.props.searchStuff(this.state.search.toLowerCase())
   }
   handleSubmit(event) {
     try {
