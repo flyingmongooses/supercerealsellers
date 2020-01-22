@@ -60,6 +60,13 @@ class SingleProduct extends React.Component {
             </p>
             <p>{product.description}</p>
           </div>
+          <p>
+            <small>Categories:</small>
+          </p>
+          {product.categories &&
+            product.categories.map(category => {
+              return <div key={category.id}>{category.name}</div>
+            })}
           <hr />
           <p>
             Inventory:{' '}

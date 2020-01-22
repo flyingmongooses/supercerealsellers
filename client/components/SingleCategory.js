@@ -18,6 +18,7 @@ class SingleCategory extends React.Component {
               <div key={product.id}>
                 <Link to={`/products/${product.id}`} key={product.id}>
                   {`${product.title[0].toUpperCase()}${product.title.slice(1)}`}
+                  <img src={product.imageUrl} />
                 </Link>
               </div>
             )
