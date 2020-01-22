@@ -5,14 +5,13 @@
   height: fit-content;
   display: flex;
   align-items: center;
+  width: 1440px;
 }
 
 #logo {
   margin: 1rem;
   text-align: center;
   align-items: center;
-  display: flex;
-  flex-direction: column;
 }
 
 #navbar h2 {
@@ -22,4 +21,34 @@
   padding-bottom: 1rem;
   background-color: rgb(128, 128, 128, 0);
   border-radius: 5px;
+}
+
+nav div a {
+  margin-top: 2.3em;
+  color: #545617;
+  font-size: xx-large;
+  background-color: #fee400;
+  box-shadow: 0 0 6px 6px #fee400;
+  border: 2px solid #fee400;
+}
+
+nav div a:hover {
+  color: #00a971;
+}
+
+#logout-lnk:hover {
+  box-shadow: 0 0 6px 6px #fe5000;
+}
+
+@media only screen and (max-width: 1125px) {
+  #logo img {
+    size: 70%;
+  }
+  nav > div {
+    margin-top: 2.6em;
+  }
+  nav div a {
+    font-size: 26px;
+    margin: 10px;
+  }
 }

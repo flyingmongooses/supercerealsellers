@@ -48,16 +48,17 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <SearchBar />
-        <div>
-          <h1>All Products</h1>
+        <div id="filtering">
+          <CategoryList />
+          <SearchBar />
         </div>
         <div id="all-products-page">
-          <CategoryList />
           <div id="all-products">
             {products.map(product => (
               <div key={product.id} id="all-products-box">
-                <img src={product.imageUrl} id="all-products-img" />
+                <Link to={`products/${product.id}`} id="all-products-title">
+                  <img src={product.imageUrl} id="all-products-img" />
+                </Link>
                 <div id="all-products-info">
                   <Link to={`products/${product.id}`} id="all-products-title">
                     <h3
