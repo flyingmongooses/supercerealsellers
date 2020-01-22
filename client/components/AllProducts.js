@@ -48,12 +48,11 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <SearchBar />
-        <div>
-          <h1>All Products</h1>
+        <div id="filtering">
+          <CategoryList />
+          <SearchBar />
         </div>
         <div id="all-products-page">
-          <CategoryList />
           <div id="all-products">
             {products.map(product => (
               <div key={product.id} id="all-products-box">

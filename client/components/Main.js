@@ -6,6 +6,29 @@ import {postCurrentUser} from '../store/currentUser'
 
 import './styles/Main.css'
 class Main extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(event) {
+    console.log('button')
+    this.props.postUser({
+      firstName: 'Guest',
+      lastName: 'Guest',
+      email: 'guest@gmail.com',
+      password: 'guest',
+      address: '100 Main',
+      city: 'Chicago',
+      state: 'IL',
+      zipcode: '60622',
+      role: 'guest'
+    })
+    //login guest user with a thunk??
+    //redirect to all products page
+    this.props.history.push('/products')
+  }
   render() {
     return (
       <div id="main">
@@ -17,23 +40,7 @@ class Main extends React.Component {
           <Link to="/create-account">Sign Up</Link>
         </button>
         <p>or</p>
-        <button
-          type="button"
-          onClick={() => {
-            console.log('button')
-            this.props.postUser({
-              firstName: 'Guest',
-              lastName: 'Guest',
-              email: 'guest@gmail.com',
-              password: 'guest',
-              address: '100 Main',
-              city: 'Chicago',
-              state: 'IL',
-              zipcode: '60622',
-              role: 'guest'
-            })
-          }}
-        >
+        <button type="button" onClick={this.handleClick}>
           <Link to="#">Continue as a Guest</Link>
         </button>
       </div>

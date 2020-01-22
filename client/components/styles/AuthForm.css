@@ -1,4 +1,4 @@
-form {
+#login-form {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -8,15 +8,21 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid #fee400;
   border-radius: 5%;
   box-shadow: 10px 10px 10px bisque;
-  width: fit-content;
+  width: 400px;
+  height: 250px;
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 0;
   font-size: 26px;
+}
+
+#login-form div {
+  margin: 5px;
 }
 
 div label {

@@ -1,13 +1,19 @@
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+#create-acc-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
 }
 
-form input {
+#create-acc-form input {
   margin-left: 5px;
   height: 30px;
 }
+
+#create-acc-form button {
+  grid-column: 1 / span 2;
+}
+
 #create-account {
   display: flex;
   flex-direction: column;
@@ -23,7 +29,13 @@ form input {
   font-size: 22px;
 }
 
-div label {
+#create-acc-form div label {
   padding-right: 20px;
   margin: 5px;
+}
+
+.inner-form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
