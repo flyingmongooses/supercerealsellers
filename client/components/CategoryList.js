@@ -12,14 +12,16 @@ class CategoryList extends React.Component {
           {this.props.categories &&
             this.props.categories.map(category => {
               return (
-                <Link
-                  to={`categories/${category.id}`}
-                  key={category.id}
-                  onClick={this.handleClick}
-                  value={category.id}
-                >
-                  {category.name}
-                </Link>
+                <div key={category.id}>
+                  <Link
+                    to={`categories/${category.id}`}
+                    key={category.id}
+                    onClick={this.handleClick}
+                    value={category.id}
+                  >
+                    {category.name}
+                  </Link>
+                </div>
               )
             })}
         </div>
