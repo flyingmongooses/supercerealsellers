@@ -10,9 +10,15 @@ import './styles/NavBar.css'
 const NavBar = ({handleClick, isLoggedIn}) => (
   <div id="navbar">
     <div id="logo">
-      <Link to="/">
-        <img src={logo} alt="logo image" />
-      </Link>
+      {isLoggedIn ? (
+        <Link to="/home">
+          <img src={logo} alt="logo image" />
+        </Link>
+      ) : (
+        <Link to="/">
+          <img src={logo} alt="logo image" />
+        </Link>
+      )}
       {/* <h2>The best place to get that hard to find cereal!</h2> */}
     </div>
     <nav>
@@ -20,16 +26,16 @@ const NavBar = ({handleClick, isLoggedIn}) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
-          <Link to="/products">See All Products</Link>
+          <Link to="/products">All Products</Link>
           <Link to="/cart">Cart</Link>
-          <a href="#" onClick={handleClick}>
+          <Link id="logout-lnk" to="#" onClick={handleClick}>
             Logout
-          </a>
+          </Link>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
           <Link to="/login">Login</Link>
           <Link to="/create-account">Sign Up</Link>
         </div>
