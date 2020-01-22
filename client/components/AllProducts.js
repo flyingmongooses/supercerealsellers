@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/product'
+import {fetchProducts, paginateProducts} from '../store/product'
 import {Link} from 'react-router-dom'
 import SearchBar from './SearchBar'
 import CategoryList from './CategoryList'
@@ -48,9 +48,53 @@ class AllProducts extends React.Component {
 
     return (
       <div>
-        <div id="filtering">
+      <div id="filtering">
           <CategoryList />
-          <SearchBar />
+        <SearchBar />
+        <div>
+          <div>
+            Page:
+            <Link
+              to="/products?page=1"
+              onClick={() => this.props.paginateProducts(1)}
+            >
+              1
+            </Link>
+            <Link
+              to="/products?page=2"
+              onClick={() => this.props.paginateProducts(2)}
+            >
+              2
+            </Link>
+            <Link
+              to="/products?page=3"
+              onClick={() => this.props.paginateProducts(3)}
+            >
+              3
+            </Link>
+            <Link
+              to="/products?page=4"
+              onClick={() => this.props.paginateProducts(4)}
+            >
+              4
+            </Link>
+            <Link
+              to="/products?page=5"
+              onClick={() => this.props.paginateProducts(5)}
+            >
+              5
+            </Link>
+            <Link
+              to="/products?page=6"
+              onClick={() => this.props.paginateProducts(6)}
+            >
+              6
+            </Link>
+            <Link to="/products" onClick={() => this.props.fetchProducts()}>
+              All Products
+            </Link>
+          </div>
+          <h1>All Products</h1>
         </div>
         <div id="all-products-page">
           <div id="all-products">
@@ -126,7 +170,8 @@ const mapDispatch = dispatch => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
     fetchCategories: () => dispatch(fetchCategories()),
-    makeOrder: (userId, productId) => dispatch(makeOrder(userId, productId))
+    makeOrder: (userId, productId) => dispatch(makeOrder(userId, productId)),
+    paginateProducts: page => dispatch(paginateProducts(page))
   }
 }
 export default connect(mapState, mapDispatch)(AllProducts)

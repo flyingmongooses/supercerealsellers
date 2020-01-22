@@ -8,44 +8,48 @@ import {fetchProducts} from '../store/product'
 import logo from './styles/images/superCerealStore-SesameSt.png'
 
 import './styles/NavBar.css'
-const NavBar = ({handleClick, isLoggedIn, fetchProducts}) => (
-  <div id="navbar">
-    <div id="logo">
-      {isLoggedIn ? (
-        <Link to="/home">
-          <img src={logo} alt="logo image" />
-        </Link>
-      ) : (
+const NavBar = props => {
+  console.log(props)
+  const {user} = props
+  return (
+    <div id="navbar">
+      <div id="logo">
         <Link to="/">
           <img src={logo} alt="logo image" />
         </Link>
-      )}
-      {/* <h2>The best place to get that hard to find cereal!</h2> */}
+        {/* <h2>The best place to get that hard to find cereal!</h2> */}
+      </div>
+      <nav>
+        {props.isLoggedIn ? (
+          <div>
+            {/* The navbar will show these links after you log in */}
+            <Link to="/home">Home</Link>
+            <Link to="/products" onClick={() => fetchProducts}>
+              See All Products
+            </Link>
+            <Link to="/cart">Cart</Link>
+            {props.isLoggedIn && user.firstName === 'Guest' ? (
+              <Link to="/create-account">Sign Up</Link>
+            ) : (
+              <div> </div>
+            )}
+            <a href="#" onClick={props.handleClick}>
+              Logout
+            </a>
+          </div>
+        ) : (
+          <div>
+            {/* The navbar will show these links before you log in */}
+            <Link to="/home">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/create-account">Sign Up</Link>
+          </div>
+        )}
+      </nav>
     </div>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/products" onClick={() => fetchProducts}>
-            All Products
-          </Link>
-          <Link to="/cart">Cart</Link>
-          <Link id="logout-lnk" to="#" onClick={handleClick}>
-            Logout
-          </Link>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/create-account">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-  </div>
-)
+  )
+}
+
 
 /**
  * CONTAINER

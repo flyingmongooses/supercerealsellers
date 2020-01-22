@@ -70,12 +70,79 @@ class SingleProduct extends React.Component {
               <br />
               <small>Shipped and packed by Flying Mongooses</small>
             </p>
+            <p>{product.description}</p>
+          </div>
+          <p>
+            <small>Categories:</small>
+          </p>
+          {product.categories &&
+            product.categories.map(category => {
+              return <div key={category.id}>{category.name}</div>
+            })}
+          <hr />
+          <p>
+            Inventory:{' '}
+            {product.inventory < 101
+              ? `${product.inventory} remaining`
+              : 'Available'}
+            <br />
+            <small>Shipped and packed by Flying Mongooses</small>
+          </p>
 
-            <button
-              type="button"
-              onClick={() =>
-                alert(
-                  'Flying mongooses are adding your item to your wishlist...if someone implements that feature :)'
+          <button
+            type="button"
+            onClick={() =>
+              alert(
+                'Flying mongooses are adding your item to your wishlist...if someone implements that feature :)'
+              )
+            }
+          >
+            Add to Wishlist
+          </button>
+        </div>
+        {/* CART, QUANTITY, WISHLIST */}
+        <div id="add-to-cart-quantity">
+          <p id="price">
+            <span>Price: </span>
+            <strong>${product.price / 100}</strong>
+          </p>
+          <button
+            id="add-to-cart-btn"
+            type="button"
+            onClick={this.handleClick}
+            value={product.id}
+          >
+            Add to Cart
+          </button>
+          <button type="button">
+            <Dropdown
+              options={options}
+              onChange={this._onSelect}
+              value={defaultOption}
+              placeholder="Select a Quantity"
+            />
+          </button>
+        </div>
+        {/* REVIEWS */}
+        <div id="reviews">
+          <h3>Customer Reviews</h3>
+          <div>
+            {reviews && reviews.length > 0 ? (
+              reviews.map(review => {
+                console.log(review.user)
+                return (
+                  <div id="review" key={review.id}>
+                    <p>
+                      Rated <mark>{review.rating} out of 5</mark> by{' '}
+                      <mark>
+                        {review.user
+                          ? `${review.user.firstName} ${review.user.lastName}`
+                          : 'User Anonymous'}
+                      </mark>
+                    </p>
+                    <strong>{review.title}</strong>
+                    <p>{review.description}</p>
+                  </div>
                 )
               }
             >
