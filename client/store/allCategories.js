@@ -9,7 +9,7 @@ export const setCategories = categories => {
 export const fetchCategories = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('api/categories')
+      const {data} = await axios.get('/api/categories')
       dispatch(setCategories(data))
     } catch (err) {
       console.log(err)

@@ -27,7 +27,6 @@ class SearchBar extends React.Component {
     }
   }
   render() {
-    console.log(this.props)
     const {search} = this.state
     return (
       <div id="search-box">
