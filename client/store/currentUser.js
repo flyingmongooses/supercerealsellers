@@ -10,6 +10,8 @@ const REMOVE_CURRENT_USER = 'REMOVE_CURRENT_USER'
 
 const ADD_CURRENT_USER = 'ADD_CURRENT_USER'
 
+const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
+
 /**
  * INITIAL STATE
  */
@@ -25,6 +27,12 @@ const removeCurrentUser = () => ({type: REMOVE_CURRENT_USER})
 export const addCurrentUser = user => {
   return {
     type: ADD_CURRENT_USER,
+    user
+  }
+}
+const updateUserData = user => {
+  return {
+    type: UPDATE_USER_DATA,
     user
   }
 }
@@ -80,6 +88,18 @@ export const postCurrentUser = data => {
   }
 }
 
+export const updateUser = info => {
+  return async dispatch => {
+    try {
+      const {userId, user} = info
+      const {data} = await axios.put(`/api/users/${userId}`, user)
+      dispatch(updateUserData(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -90,6 +110,8 @@ const currentUserReducer = (state = defaultUser, action) => {
     case REMOVE_CURRENT_USER:
       return defaultUser
     case ADD_CURRENT_USER:
+      return action.user
+    case UPDATE_USER_DATA:
       return action.user
     default:
       return state

@@ -39,11 +39,19 @@ router.get('/:id', adminCheck, async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     const user = await User.create(req.body)
     req.session.userId = user.id
     console.log(req.session)
     res.json(user)
+  } catch (err) {
+    next(err)
+  }
+})
+router.put('/:id', async (req, res, next) => {
+  try {
+    const foundUser = await User.findByPk(req.params.id)
+    const updatedUser = await foundUser.update(req.body)
+    res.send(updatedUser)
   } catch (err) {
     next(err)
   }

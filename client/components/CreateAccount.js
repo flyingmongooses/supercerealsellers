@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {postCurrentUser} from '../store'
+import {postCurrentUser, updateUser} from '../store/currentUser'
 
 import './styles/CreateAccount.css'
 export class CreateAccount extends React.Component {
@@ -29,27 +29,35 @@ export class CreateAccount extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.addUser({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      password: this.state.password,
-      address: this.state.address,
-      city: this.state.city,
-      state: this.state.state,
-      zipcode: this.state.zipcode
-    })
-    this.setState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      address: '',
-      city: '',
-      state: '',
-      zipcode: ''
-    })
-    this.props.history.push('/home')
+    console.log(this.props)
+    if (!this.props.user) {
+      this.props.addUser({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        address: this.state.address,
+        city: this.state.city,
+        state: this.state.state,
+        zipcode: this.state.zipcode
+      })
+      this.setState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        address: '',
+        city: '',
+        state: '',
+        zipcode: ''
+      })
+      this.props.history.push('/home')
+    } else {
+      const userId = this.props.user.id
+      const user = this.state
+      this.props.updateUser({userId, user})
+      this.props.history.push('/home')
+    }
   }
 
   render() {
@@ -143,7 +151,12 @@ export class CreateAccount extends React.Component {
     )
   }
 }
-
-export default connect(null, dispatch => ({
-  addUser: user => dispatch(postCurrentUser(user))
-}))(CreateAccount)
+const mapDispatch = dispatch => {
+  return {
+    addUser: user => dispatch(postCurrentUser(user)),
+    updateUser: user => dispatch(updateUser(user))
+  }
+}
+export default connect(state => {
+  return {user: state.currentUser}
+}, mapDispatch)(CreateAccount)
