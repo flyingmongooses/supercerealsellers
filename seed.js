@@ -55,6 +55,13 @@ const seed = async () => {
       price: 299,
       inventory: 100
     })
+    const productImages = [
+      'https://www.pikpng.com/pngl/m/256-2564366_honey-nut-cheerios-gluten-free-breakfast-cereal-cheerios.png',
+      'https://www.fye.com/dw/image/v2/BBNF_PRD/on/demandware.static/-/Sites-fye-master/default/dwca30a657/fye/000/000000/fye.000000793396121007_0.jpg?sw=1000',
+      'https://i5.walmartimages.com/asr/f405e24f-f1a3-4093-b74f-fb4570ffc0ef_1.22c2838cf2f63ead9f1fa6beccdae3b8.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF',
+      'https://cdn.shopify.com/s/files/1/0091/1910/5081/products/image_8b37de8c-80de-472e-bae5-66f9b1c87c3e_620x.jpg?v=1574584196',
+      'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1560369049-capn-crunch-cotton-candy-cereal-square-1560369020.jpg'
+    ]
     const productPromises = []
     for (let j = 0; j < 100; j++) {
       productPromises.push(
@@ -62,7 +69,8 @@ const seed = async () => {
           title: faker.random.word(),
           description: faker.random.words(),
           price: faker.random.number({min: 199, max: 1400}),
-          inventory: faker.random.number({min: 10, max: 1000})
+          inventory: faker.random.number({min: 10, max: 1000}),
+          imageUrl: productImages[faker.random.number({min: 0, max: 4})]
         })
       )
       const products = await Promise.all(productPromises)
